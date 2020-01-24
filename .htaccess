@@ -1,0 +1,26 @@
+# Disable directory browsing 
+Options -Indexes 
+
+# Deny access to .htaccess
+<Files .htaccess>
+Order allow,deny
+Deny from all
+</Files>
+
+# Deny access to files with extensions .ini, .psd, .log, .sh
+<FilesMatch "\.(htaccess|htpasswd|ini|log|sql)$">
+Order allow,deny
+Deny from all
+</FilesMatch>
+
+# Deny access to filenames starting with dot(.)
+<FilesMatch "^\.">
+Order allow,deny
+Deny from all
+</FilesMatch>
+
+# Index folders
+RedirectMatch 403 ^/backups/?$
+RedirectMatch 403 ^/uploads/?$
+RedirectMatch 403 ^/resources/?$
+RedirectMatch 403 ^/plugins/?$

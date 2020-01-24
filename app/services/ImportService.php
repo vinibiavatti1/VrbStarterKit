@@ -1,0 +1,90 @@
+<?php
+require_once(__DIR__ . "/../services/ImportService.php");
+ImportService::importPhpModules();
+
+/**
+ * This service provides functions to load data to pages or php reosurces. This
+ * is used to import external files for pages like CSSs, Scripts, or PHP classes
+ * .
+ */
+class ImportService {
+    
+    /**
+     * Import css modules
+     */
+    public static function importCssModules() {
+        ?>
+        <link href="<?= UrlService::addBaseUrl("/app/styles/GeneralCss.css") ?>" rel="stylesheet" type="text/css"/>    
+        <link href="<?= UrlService::addBaseUrl(Config::MATERIAL_DESIGN ? "/plugins/materialize-1.0.0/css/materialize.min.css" : "/plugins/bootstrap-4.3.1/css/bootstrap.min.css") ?>" rel="stylesheet" type="text/css"/>
+        <link href="<?= Config::MATERIAL_DESIGN ? "https://fonts.googleapis.com/icon?family=Material+Icons" : "https://use.fontawesome.com/releases/v5.6.0/css/all.css" ?>" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous" rel="stylesheet">
+        <link href="<?= UrlService::addBaseUrl("/plugins/datatable-1.10.18/css/jquery.dataTables.min.css") ?>" rel="stylesheet" type="text/css"/>
+        <link href="<?= UrlService::addBaseUrl("/plugins/select2-4.0.6/css/select2.min.css") ?>" rel="stylesheet" type="text/css"/>
+        <link href="<?= UrlService::addBaseUrl("/plugins/fancybox-3.5.7/jquery.fancybox.min.css") ?>" rel="stylesheet" type="text/css"/>
+        <link href="<?= UrlService::addBaseUrl("/plugins/toastr-2.1.4/toastr.min.css") ?>" rel="stylesheet" type="text/css"/>
+        <link href="<?= UrlService::addBaseUrl("/plugins/dropify-0.2.2/css/dropify.min.css") ?>" rel="stylesheet" type="text/css"/>
+        <link href="<?= UrlService::addBaseUrl("/plugins/charjs-2.8.0/Chart.min.css") ?>" rel="stylesheet" type="text/css"/>
+        <link href="<?= UrlService::addBaseUrl("/plugins/jquery-loading-1.3.0/jquery.loading.min.css") ?>" rel="stylesheet" type="text/css"/>
+        <?php
+    }
+    
+    /**
+     * Import js modules
+     */
+    public static function importJsModules() {
+        ?>
+        <script src="<?=UrlService::addBaseUrl("/app/scripts/GeneralJs.js")?>" type="text/javascript"></script>
+        <script src="<?=UrlService::addBaseUrl("/plugins/jquery-3.3.1/jquery.js")?>" type="text/javascript"></script>
+        <script src="<?=UrlService::addBaseUrl("/plugins/datatable-1.10.18/js/jquery.dataTables.min.js")?>" type="text/javascript"></script>
+        <script src="<?=UrlService::addBaseUrl("/plugins/bootstrap-4.3.1/js/popper.min.js")?>" type="text/javascript"></script>
+        <script src="<?=UrlService::addBaseUrl(Config::MATERIAL_DESIGN ? "/plugins/materialize-1.0.0/js/materialize.min.js" : "/plugins/bootstrap-4.3.1/js/bootstrap.min.js")?>" type="text/javascript"></script>
+        <script src="<?=UrlService::addBaseUrl("/plugins/select2-4.0.6/js/select2.full.min.js")?>" type="text/javascript"></script>
+        <script src="<?=UrlService::addBaseUrl("/plugins/fancybox-3.5.7/jquery.fancybox.min.js")?>" type="text/javascript"></script>
+        <script src="<?=UrlService::addBaseUrl("/plugins/sweetalert-2.1.1/sweetalert.min.js")?>" type="text/javascript"></script>
+        <script src="<?=UrlService::addBaseUrl("/plugins/toastr-2.1.4/toastr.min.js")?>" type="text/javascript"></script>
+        <script src="<?=UrlService::addBaseUrl("/plugins/jquery-mask-1.14.15/jquery.mask.min.js")?>" type="text/javascript"></script>
+        <script src="<?=UrlService::addBaseUrl("/plugins/dropify-0.2.2/js/dropify.min.js")?>" type="text/javascript"></script>
+        <script src="<?=UrlService::addBaseUrl("/plugins/charjs-2.8.0/Chart.bundle.min.js")?>" type="text/javascript"></script>
+        <script src="<?=UrlService::addBaseUrl("/plugins/charjs-2.8.0/Chart.min.js")?>" type="text/javascript"></script>
+        <script src="<?=UrlService::addBaseUrl("/plugins/jquery-loading-1.3.0/jquery.loading.min.js")?>" type="text/javascript"></script>
+        <?php
+    }
+    
+    /**
+     * Import all of application php modules. The classes of the below 
+     * directories will be imported.<br>
+     * <ul>
+     *  <li>/app/components</li>
+     *  <li>/app/types</li>
+     *  <li>/app/cruds</li>
+     *  <li>/app/services</li>
+     *  <li>/config.php</li>
+     * </ul>
+     */
+    public static function importPhpModules() {
+        ImportService::importPhpModulesFromDir(__DIR__ . "/../components");
+        ImportService::importPhpModulesFromDir(__DIR__ . "/../types");
+        ImportService::importPhpModulesFromDir(__DIR__ . "/../cruds");
+        ImportService::importPhpModulesFromDir(__DIR__ . "/../services");
+        require_once(__DIR__ . "/../../config.php");
+    }
+    
+    /**
+     * Import php content from directory. Will be imported just files that
+     * has <code>.php</code> suffix and doesn't have the <code>_ignore</code>
+     * prefix.
+     * @param type $dir
+     */
+    public static function importPhpModulesFromDir($dir) {
+        $files = scandir($dir);
+        foreach($files as $file) {
+            if($file == "." || $file == "..") {
+                continue;
+            }
+            if(substr($file, -4) != ".php" || substr($file, 0, 8) == "ignore_") {
+                continue;
+            }
+            require_once($dir . "/" . $file);
+        }
+    }
+}
+
