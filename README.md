@@ -1,34 +1,35 @@
 # Kit Inicial Vrb
-O Kit Inicial Vrb se trata de um projeto base para aplicações PHP que visam utilizar o conceito nativo de programação Web. Ele conta com uma coleção de serviços, utilidades, padrões, configurações e plugins pré definidos. 
+The VrbStarterKit is a pre implemented project with util features for PHP projects that uses the raw PHP programming concept. This kit includes a collections of services, utilities, deafult patterns, configurations and pre defined plugins. 
 
-## Instalação
-Para utilizar o kit, baixe e descompacte o arquivo zipado no diretório público de seu servidor. Acesse o projeto via navegador e verifique se uma página de bem vindo é mostrada. Caso isto ocorra, a instalação do kit está concluída com êxito. Caso ocorrer um erro de redirecionamento, basta informar a URL base correta para a configuração <b>URL_BASE</b> no arquivo de configurações <b>/config.php</b> e realizar o teste novamente. Abaixo segue a sessão que diz respeito a este arquivo de configurações.
+## Installing
+To start to use this kit, download or clone this repository in your project diretory. After it, turn on the server and try to access the index.php from any browser. If you get it, your kit installation is finished. If the access gets bad, or some redirect error gets occured, please check the **config.php** file and put the correct configuration in thepre defined keys. Try again and success! Check the section below for configuring instructions. 
 
-## Configuração
-Ao iniciar o projeto, o arquivo <b>/config.php</b> deve ser configurado de acordo com as definições do projeto. Algumas configurações como título, palavras-chave, responsividade, dados de acesso a base, url_base e etc... devem ser definidas. Recomendamos muito que este arquivo seja clonado com as definições do ambiente de produção (exemplo: <b>config_producao.php</b>), persistindo as configurações de produção e de desenvolvimento. Assim, basta realizar a troca do nome do arquivo ao realizar a atualização do ambiente de produção.
-> A configuração <b>MATERIAL_DESIGN</b> refere-se ao tipo de framework css que será usado (Bootstrap ou MaterializeCss). Caso a escolha for material design, alguns componentes podem sofrer inconsistências.
+## Configuring
+When you start the project, the **config.php** file needs to be configured according with project definitions. Some configurations as the title, key-words, responsivity, access data for database, base url, etc... need to be defined correctly. We recommend much to clone this file with production configuration (example: <b>productionConfig.php</b>), and change to the correct config file when the application gets up to prodution environment. 
 
-> A configuração <b>IDIOMA</b> pode ser definida pelo arquivo de configurações com base nos dicionários presentes na pasta <b>/app/traducoes</b>. Caso houver algum parâmetro definido na sessao <b>$_SESSION['IDIOMA']</b> esta configuração será desconsiderada, levando em consideração o idioma selecionado na sessão.
+> The <b>MATERIAL_DESIGN</b> is about the CSS framework kind you will use. By default, the bootstrap is set to the project, but you can change it to use the Material Design if you want. If you chose the material design, some util components can stop to work, and these components need to be reimplemented.
 
-## Padrões
-O projeto utiliza o padrão de underscore (Underline para espaçamentos) para qualquer conteúdo. Todos os recursos padrões PHP estão localizados na pasta <b>/app</b>.
-Os arquivos utilizam um prefixo para definir qual seua funcionalidade. Abaixo segue uma tabela com estas definições:
+> The <b>IDIOM</b> configuration can be defined in the configuration file based on the files inside the **/app/translates** directory. If there is a session parameter configured in the <b>$_SESSION['IDIOMA']</b>, this configuration will be used as priority and the file that will be used will be the specified file for this key value.
 
-Prefixo|Local|Descrição
+## Patterns
+The project uses camel case for any identifier. Every default PHP resources are in the <b>/app</b> folder.
+The files use a suffix to define the kind of this file. The table below shows these definitions:
+
+Suffix|Location|Description
 ---|---|---
-pg_|/app/paginas|Páginas
-serv_|/app/servicos|Coleção de funcionalidades padrões
-const_|/app/constantes|Coleção de contantes
-acao_|/app/acoes|Ações de formulários
-ajax_|/app/ajax|Serviços de retorno a requisições ajax
-comp_|/app/componentes|Componentes
-cron_|/app/crons|Trabalhos Cron
-crud_|/app/cruds|Serviços de tratamentos de entidades do Banco de Dados
-tpl_|/app/templates|Qualquer tipo de template
-css_|/app/estilos|Folhas de estilo em cascata (CSS)
-js_|/app/scripts|Scripts com lógica de execução (JS)
-eula_|/app/eulas|Arquivos de termos de uso de softwares
-sql_|/app/sqls|Arquivos de linguagem de banco de dados (SQL)
+Page|/app/pages|Páginas
+Service|/app/services|Default functionalities collection
+Types|/app/types|Constants collection
+Action|/app/actions|Form actions
+Ajax|/app/ajax|Return services for ajax requests
+Component|/app/componentes|Components
+Cron|/app/crons|Cron jobs implementations
+Crud|/app/cruds|Manager services for database entities
+Template|/app/templates|Any template type
+Css|/app/styles|Cascade Stylesheets (CSS)
+Js|/app/scripts|Scripts with algorithms (JS)
+Eula|/app/eulas|Files with software policy
+Sql|/app/sqls|Query language files (SQL)
 
 ## Serviços
 Os serviços se tratam de funcionalidades padrões da aplicação. Abaixo seguem os serviços pré existentes no projeto, e sua definição:
