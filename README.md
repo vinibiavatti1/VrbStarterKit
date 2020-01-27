@@ -1,125 +1,125 @@
-# Kit Inicial Vrb
-O Kit Inicial Vrb se trata de um projeto base para aplicações PHP que visam utilizar o conceito nativo de programação Web. Ele conta com uma coleção de serviços, utilidades, padrões, configurações e plugins pré definidos. 
+# VrbStarterKit
+The VrbStarterKit is a pre implemented project with util features for PHP projects that uses the raw PHP programming concept. This kit includes a collections of services, utilities, deafult patterns, configurations and pre defined plugins. 
 
-## Instalação
-Para utilizar o kit, baixe e descompacte o arquivo zipado no diretório público de seu servidor. Acesse o projeto via navegador e verifique se uma página de bem vindo é mostrada. Caso isto ocorra, a instalação do kit está concluída com êxito. Caso ocorrer um erro de redirecionamento, basta informar a URL base correta para a configuração <b>URL_BASE</b> no arquivo de configurações <b>/config.php</b> e realizar o teste novamente. Abaixo segue a sessão que diz respeito a este arquivo de configurações.
+## Installation
+To start to use this kit, download or clone this repository in your project diretory. After it, turn on the server and try to access the index.php from any browser. If you get it, your kit installation is finished. If the access gets bad, or some redirect error gets occured, please check the **config.php** file and put the correct configuration in thepre defined keys. Try again and success! Check the section below for configuring instructions. 
 
-## Configuração
-Ao iniciar o projeto, o arquivo <b>/config.php</b> deve ser configurado de acordo com as definições do projeto. Algumas configurações como título, palavras-chave, responsividade, dados de acesso a base, url_base e etc... devem ser definidas. Recomendamos muito que este arquivo seja clonado com as definições do ambiente de produção (exemplo: <b>config_producao.php</b>), persistindo as configurações de produção e de desenvolvimento. Assim, basta realizar a troca do nome do arquivo ao realizar a atualização do ambiente de produção.
-> A configuração <b>MATERIAL_DESIGN</b> refere-se ao tipo de framework css que será usado (Bootstrap ou MaterializeCss). Caso a escolha for material design, alguns componentes podem sofrer inconsistências.
+## Configuration
+When you start the project, the **config.php** file needs to be configured according with project definitions. Some configurations as the title, key-words, responsivity, access data for database, base url, etc... need to be defined correctly. We recommend much to clone this file with production configuration (example: <b>productionConfig.php</b>), and change to the correct config file when the application gets up to prodution environment. 
 
-> A configuração <b>IDIOMA</b> pode ser definida pelo arquivo de configurações com base nos dicionários presentes na pasta <b>/app/traducoes</b>. Caso houver algum parâmetro definido na sessao <b>$_SESSION['IDIOMA']</b> esta configuração será desconsiderada, levando em consideração o idioma selecionado na sessão.
+> The <b>MATERIAL_DESIGN</b> is about the CSS framework kind you will use. By default, the bootstrap is set to the project, but you can change it to use the Material Design if you want. If you chose the material design, some util components can stop to work, and these components need to be reimplemented.
 
-## Padrões
-O projeto utiliza o padrão de underscore (Underline para espaçamentos) para qualquer conteúdo. Todos os recursos padrões PHP estão localizados na pasta <b>/app</b>.
-Os arquivos utilizam um prefixo para definir qual seua funcionalidade. Abaixo segue uma tabela com estas definições:
+> The <b>IDIOM</b> configuration can be defined in the configuration file based on the files inside the **/app/translates** directory. If there is a session parameter configured in the <b>$_SESSION['IDIOMA']</b>, this configuration will be used as priority and the file that will be used will be the specified file for this key value.
 
-Prefixo|Local|Descrição
+## Patterns
+The project uses camel case for any identifier. Every default PHP resources are in the <b>/app</b> folder.
+The files use a suffix to define the kind of this file. The table below shows these definitions:
+
+Suffix|Location|Description
 ---|---|---
-pg_|/app/paginas|Páginas
-serv_|/app/servicos|Coleção de funcionalidades padrões
-const_|/app/constantes|Coleção de contantes
-acao_|/app/acoes|Ações de formulários
-ajax_|/app/ajax|Serviços de retorno a requisições ajax
-comp_|/app/componentes|Componentes
-cron_|/app/crons|Trabalhos Cron
-crud_|/app/cruds|Serviços de tratamentos de entidades do Banco de Dados
-tpl_|/app/templates|Qualquer tipo de template
-css_|/app/estilos|Folhas de estilo em cascata (CSS)
-js_|/app/scripts|Scripts com lógica de execução (JS)
-eula_|/app/eulas|Arquivos de termos de uso de softwares
-sql_|/app/sqls|Arquivos de linguagem de banco de dados (SQL)
+`Page`|/app/pages|Páginas
+`Service`|/app/services|Default functionalities collection
+`Types`|/app/types|Constants collection
+`Action`|/app/actions|Form actions
+`Ajax`|/app/ajax|Return services for ajax requests
+`Component`|/app/componentes|Components
+`Cron`|/app/crons|Cron jobs implementations
+`Crud`|/app/cruds|Manager services for database entities
+`Template`|/app/templates|Any template type
+`Css`|/app/styles|Cascade Stylesheets (CSS)
+`Js`|/app/scripts|Scripts with algorithms (JS)
+`Eula`|/app/eulas|Files with software policy
+`Sql`|/app/sqls|Query language files (SQL)
 
-## Serviços
-Os serviços se tratam de funcionalidades padrões da aplicação. Abaixo seguem os serviços pré existentes no projeto, e sua definição:
+## Services
+The services are default functionalities for usage. There are different kinds of services that can be used for specified thing. Check the table below for more details:
 
-Serviço|Definição
+Service|Definition
 ---|---
-serv_banco_dados|Serviço de conexão e comandos de banco de dados
-serv_cabecalho|Serviço de manipulação de cabeçalho HTTP
-serv_cookie|Serviço para tratamento de cookies
-serv_data|Serviço para tratamentos de datas
-serv_email|Serviço de envio de e-mail com PHPMailer
-serv_evento|Serviço de controle de eventos da aplicação
-serv_html|Serviço de tratamento de Tags, atributos, etc... para arquivos HTML
-serv_http|Serviço de controle de variáveis HTTP
-serv_importacao|Serviço de importação de módulos
-serv_ip|Serviço de endereço de IP
-serv_log|Serviço de Log da aplicação
-serv_seg|Serviço com validações de segurança para páginas, ações, ajax, etc
-serv_sessao|Serviço de manipulação de sessões de usuário
-serv_traducao|Serviço de Tradução de aplicação
-serv_upload|Serviço para manipulação de arquivos e tratamento de diretórios
-serv_url|Serviço de tratamento de URL e redirecionamento
-serv_pdf|Serviço de criação de documentos Pdf com plugin Dompdf
+`DatabaseService`|Database connection service
+`HeaderService`|HTTP header manipulation
+`CookieService`|Cookie manipulation service
+`DateService`|Date utilities service
+`MailService`|Email sender thats use the PHPMailer library
+`EventService`|Application event controller
+`HtmlService`|Service to manipulate Tags, attributes, etc... for HTML files
+`HttpService`|Variables HTTP controller
+`ImportService`|Service to import resource to PHP pages
+`IpService`|IP address utilities
+`LogService`|Log utilities
+`SecurityService`|Security validation service to control the access to PHP pages
+`SessionService`|Session manipulation service
+`TranslateService`|Translate utilities for application strings
+`UploadService`|File upload and directory manipulation utilities
+`UrlService`|Redirect and URL manipulation service
+`PdfService`|Service for PDF creation with Dompdf plugin
 
-## Importação
-Qualquer importação da aplicação é realizada pelo serviço de importação <b>Serv_Importacao</b>, exceto por importações muito específicas. Este serviço tem como função realizar a importação de arquivos css, arquivos js, plugins e classes PHP. Quando qualquer recurso novo é adicionado na aplicação, este recurso deve ser adicionado neste serviço para que seja importado. Abaixo seguem as funções de importação deste serviço:
+## Imports
+Any application imports are made using the `ImportService`, except by specified imports. This service is about to make imports files such CSS files, JS files, PHP files, etc. This service reads the application folders to import the files. You can use `Ignore_` key as file prefix to prevent to load this file by the service. Below are some important functions that will import common files to the application:  
 
-Rotina|Definição
+Method|Definition
 ---|---
-importar_modulos_css()|Função de importação de arquivos CSS utilizando tags ```<link href="" />```
-importar_modulos_js()|Função de importação de arquivos JS utilizando tags ```<script src=""></script>```
-importar_modulos_php()|Função de importação de arquivos PHP utilizando a função ```require_once() ```
+importCssModules()|Function to import CSS files using the tag: ```<link href="" />```
+importJsModules()|Function to import JS files using the tag: ```<script src=""></script>```
+importPhpModules()|Function to import PHP files using the method: ```require_once() ```
 
-> A função ```Serv_Importacao::importar_classes_php() ``` realiza a importação de qualquer arquivo com extenção PHP das pastas <b>/app/componentes</b>, <b>/app/constantes</b>, <b>/app/cruds</b> e <b>/app/servicos</b>. O arquivo <b>/config.php</b> também é importado. Arquivos que contenham o prefixo <b>ignorar_</b> serão ignorados na rotina de importação.
+> The function ```ImportService::importPhpModules() ``` imports any PHP file from the folders <b>/app/components</b>, <b>/app/types</b>, <b>/app/cruds</b> e <b>/app/services</b>. The file <b>/config.php</b> is imported too. Files that have the prefix <b>ignorar_</b> willbe ignored for importation.
 
-## Componentes
-Existem uma interface para criação de componentes na qual possui 3 métodos padrões que podem ou não ser implementados:
+## Components
+There is an interface for component creation. This interface has 3 default methods. Each method is defined for a specified thing:
 
-Método|Definição
+Method|Definition
 ---|---
-html|Renderizar conteúdo HTML do componente
-script|Renderizar Script JS do componente
-estilo|Renderizar estilo CSS do componente
-renderizar|Renderizar componente
+html|Render component's html
+script|Render component's script
+style|Render component's style
+render|Render component
 
-Um componente é um objeto PHP, que possui seus atributos na qual manipulam a renderização do HTML, Script ou Estilo. Abaixo segue um exemplo de criação de um componente:
+A component is a PHP object, that has the renderization changed by the configured attributes. Check the example below for component creation:
 
 ```php
-$comp = new Comp_Bem_Vindo("Kit Inicial Vrb");
-$comp->renderizar();
+$component = new WelcomeComponent("VrbStarterKit");
+$component->render();
 ```
 
-## Crud
-As classes Crud servem para manipular entidades na base de dados. A interface disponibiliza 5 métodos para implementação:
+## Cruds
+The Crud classes are for database entity manipulation. The interface allows 5 methods to implementation:
 
-Método|Definição
+Method|Definition
 ---|---
-get($id)|Obter um registro do banco de dados pelo ID
-listar($filtros)|Listar todos os regitros do banco de dados ou com base em um filtro especificado
-inserir($dados)|Inserir registro no banco de dados
-deletar($id)|Deletar registro do banco de dados pelo ID
-atualizar($id, $dados)|Atualizar registro do banco de dados
+get($id)|Get an object from database with specified ID
+list($filtros)|List some objects from database with specified filter
+insert($dados)|Insert an object entity to database
+delete($id)|Delete an object entity from database
+update($id, $dados)|Update the object identified by the informed id with new data
 
-## Cron
-Classes Cron focam em uma execução através de algum trabalho cron (Cronjob). A interface cron possui somente o método <b>executar()</b> para ser implementado com base em sua função.
+## Crons
+Cron classes have just an execution method to be called by cron jobs from server or other source. 
 
-## Páginas
-As páginas da aplicação seguem um padrão para organização. Abaixo segue um exemplo de página PHP:
+## Pages
+The application pages follows a design pattern. Check below for an example: 
 
 ```php
 <?php
-// Importação
-require_once(__DIR__ . "/../servicos/serv_importacao.php");
-Serv_Importacao::importar_classes_php();
+require_once(__DIR__ . "/../services/ImportService.php");
+ImportService::importPhpModules();
 
-// Evento de Página
-Serv_Evento::pagina();
+// Page event
+EventService::page();
 ?>
 <html>
     <head>
         <?php
-        Serv_Html::titulo("Bem Vindo");
-        Serv_Html::metatags();
-        Serv_Importacao::importar_modulos_css();
-        Serv_Importacao::importar_modulos_js();
+        HtmlService::title("Title");
+        HtmlService::metatags();
+        HtmlService::favicon();
+        ImportService::importCssModules();
+        ImportService::importJsModules();
         ?>
     </head>
     <body>
-        <?php
-        $comp = new Comp_Bem_Vindo("Kit Inicial Vrb");
-        $comp->renderizar();
+        <?php 
+            // TODO
         ?>
     </body>
     <script>
@@ -129,5 +129,6 @@ Serv_Evento::pagina();
     </script>
 </html>
 ```
-## Sobre
-O projeto foi desenvolvido na plataforma <b>Netbeans 8.1</b>, com a linguagem de programação PHP. O ambiente XAMPP foi utilizado para seu desenvolvimento. Ele utiliza a licença <b>MIT</b> de software livre. Seu autor foi Vinícius Reif Biavatti.
+
+## About
+This project was developed in <b>Netbeans 8.1</b> IDE, using PHP language. The XAMPP envieronment was used for tests. The project is defined with <b>MIT</b> license (Open Source). Thanks and nice codding!
