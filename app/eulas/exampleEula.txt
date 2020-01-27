@@ -1,0 +1,9 @@
+Eula Example
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id nisl 
+condimentum, porta leo tristique, laoreet augue. Maecenas quis purus diam. 
+Aenean ut pretium nibh. Maecenas fermentum et velit viverra tristique. Sed 
+sodales odio eget nisi semper, et ultricies magna aliquam. Orci varius natoque 
+penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque 
+porttitor consequat ipsum eget finibus. Aenean aliquet euismod mauris vel 
+scelerisque.

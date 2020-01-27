@@ -80,7 +80,7 @@ class ImportService {
             if($file == "." || $file == "..") {
                 continue;
             }
-            if(substr($file, -4) != ".php" || substr($file, 0, 8) == "ignore_") {
+            if(substr($file, -4) != ".php" || strcasecmp(substr($file, 0, 8), "ignore_") == 0) {
                 continue;
             }
             require_once($dir . "/" . $file);
