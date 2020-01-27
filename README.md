@@ -36,23 +36,23 @@ The services are default functionalities for usage. There are different kinds of
 
 Service|Definition
 ---|---
-`DatabaseService`|Serviço de conexão e comandos de banco de dados
-`HeaderService`|Serviço de manipulação de cabeçalho HTTP
-`CookieService`|Serviço para tratamento de cookies
-`DateService`|Serviço para tratamentos de datas
-`MailService`|Serviço de envio de e-mail com PHPMailer
-`EventService`|Serviço de controle de eventos da aplicação
-`HtmlService`|Serviço de tratamento de Tags, atributos, etc... para arquivos HTML
-`HttpService`|Serviço de controle de variáveis HTTP
-`ImportService`|Serviço de importação de módulos
-`IpService`|Serviço de endereço de IP
-`LogService`|Serviço de Log da aplicação
-`SecurityService`|Serviço com validações de segurança para páginas, ações, ajax, etc
-`SessionService`|Serviço de manipulação de sessões de usuário
-`TranslateService`|Serviço de Tradução de aplicação
-`UploadService`|Serviço para manipulação de arquivos e tratamento de diretórios
-`UrlService`|Serviço de tratamento de URL e redirecionamento
-`PdfService`|Serviço de criação de documentos Pdf com plugin Dompdf
+`DatabaseService`|Database connection service
+`HeaderService`|HTTP header manipulation
+`CookieService`|Cookie manipulation service
+`DateService`|Date utilities service
+`MailService`|Email sender thats use the PHPMailer library
+`EventService`|Application event controller
+`HtmlService`|Service to manipulate Tags, attributes, etc... for HTML files
+`HttpService`|Variables HTTP controller
+`ImportService`|Service to import resource to PHP pages
+`IpService`|IP address utilities
+`LogService`|Log utilities
+`SecurityService`|Security validation service to control the access to PHP pages
+`SessionService`|Session manipulation service
+`TranslateService`|Translate utilities for application strings
+`UploadService`|File upload and directory manipulation utilities
+`UrlService`|Redirect and URL manipulation service
+`PdfService`|Service for PDF creation with Dompdf plugin
 
 ## Imports
 Any application imports are made using the `ImportService`, except by specified imports. This service is about to make imports files such CSS files, JS files, PHP files, etc. This service reads the application folders to import the files. You can use `Ignore_` key as file prefix to prevent to load this file by the service. Below are some important functions that will import common files to the application:  
