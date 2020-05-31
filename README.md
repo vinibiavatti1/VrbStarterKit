@@ -84,7 +84,7 @@ $component->render();
 ```
 
 ## Repositories
-The Repository classes are for database entity manipulation. The interface allows 5 methods to implementation:
+The Repository classes are for database entity manipulation. The interface allows 5 methods to implementation. The interface implementation is not required. It is just a base content to help Repository classes implementation.
 
 Method|Definition
 ---|---
