@@ -7,7 +7,7 @@ Order allow,deny
 Deny from all
 </Files>
 
-# Deny access to files with extensions .ini, .psd, .log, .sh
+# Deny access to some important files
 <FilesMatch "\.(htaccess|htpasswd|ini|log|sql)$">
 Order allow,deny
 Deny from all

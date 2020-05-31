@@ -64,10 +64,10 @@ class Config {
 
     /**
      * Get configuration by name
-     * @param string $name
+     * @param string $key
      * @return mixed
      */
-    public static function get_config($name) {
+    public static function getConfig($key) {
         return Config::$name;
     }
 }

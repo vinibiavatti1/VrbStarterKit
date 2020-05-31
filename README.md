@@ -24,7 +24,7 @@ Suffix|Location|Description
 `Ajax`|/app/ajax|Return services for ajax requests
 `Component`|/app/componentes|Components
 `Cron`|/app/crons|Cron jobs implementations
-`Crud`|/app/cruds|Manager services for database entities
+`Repository`|/app/repositories|Manager services for database entities
 `Template`|/app/templates|Any template type
 `Css`|/app/styles|Cascade Stylesheets (CSS)
 `Js`|/app/scripts|Scripts with algorithms (JS)
@@ -63,7 +63,7 @@ importCssModules()|Function to import CSS files using the tag: ```<link href="" 
 importJsModules()|Function to import JS files using the tag: ```<script src=""></script>```
 importPhpModules()|Function to import PHP files using the method: ```require_once() ```
 
-> The function ```ImportService::importPhpModules() ``` imports any PHP file from the folders <b>/app/components</b>, <b>/app/types</b>, <b>/app/cruds</b> e <b>/app/services</b>. The file <b>/config.php</b> is imported too. Files that have the prefix <b>ignorar_</b> willbe ignored for importation.
+> The function ```ImportService::importPhpModules() ``` imports any PHP file from the folders <b>/app/components</b>, <b>/app/types</b>, <b>/app/repositories</b> e <b>/app/services</b>. The file <b>/config.php</b> is imported too. Files that have the prefix <b>ignore_</b> willbe ignored for importation.
 
 ## Components
 There is an interface for component creation. This interface has 3 default methods. Each method is defined for a specified thing:
@@ -82,8 +82,8 @@ $component = new WelcomeComponent("VrbStarterKit");
 $component->render();
 ```
 
-## Cruds
-The Crud classes are for database entity manipulation. The interface allows 5 methods to implementation:
+## Repositories
+The Repository classes are for database entity manipulation. The interface allows 5 methods to implementation:
 
 Method|Definition
 ---|---

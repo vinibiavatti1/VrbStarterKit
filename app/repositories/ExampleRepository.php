@@ -3,9 +3,9 @@ require_once(__DIR__ . "/../services/ImportService.php");
 ImportService::importPhpModules();
 
 /**
- * Example CRUD implementation
+ * Example Repository implementation
  */
-class ExampleCrud implements Crud {
+class ExampleRepository implements Repository {
     
     public static function insert($data) {
         $sql = "INSERT INTO users VALUES ('$data[name]', '$data[email]', '$data[password]')";

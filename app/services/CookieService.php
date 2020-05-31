@@ -10,11 +10,11 @@ class CookieService {
     /**
      * Get cookie value.
      * @param string $name
-     * @param mixed $else
+     * @param mixed $default
      * @return mixed
      */
-    public static function get($name, $else = null) {
-        return isset($_COOKIE[$name]) ? $_COOKIE[$name] : $else;
+    public static function get($name, $default = null) {
+        return isset($_COOKIE[$name]) ? $_COOKIE[$name] : $default;
     }
     
     /**
@@ -30,7 +30,7 @@ class CookieService {
     
     /**
      * Set cookie value.
-     * @param string $email
+     * @param string $name
      * @param mixed $value
      */
     public static function set($name, $value) {

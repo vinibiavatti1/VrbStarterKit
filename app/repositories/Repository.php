@@ -1,10 +1,10 @@
 <?php
 /**
- * Template to create CRUD classes with default methods. This is not required
- * to create CRUD classes, but this follow the default way using common actions
- * to object persistence.
+ * Template to create Repository classes with default methods. This is not 
+ * required to create Repository classes, but this follow the default way using 
+ * common actions to object persistence.
  */
-interface Crud {
+interface Repository {
     
     /**
      * Get record by identifier

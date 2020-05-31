@@ -25,7 +25,7 @@ class WelcomeComponent extends Component {
                 The main logic content of the kit is in the <code>/app</code> directory, where are present the pages, services, components...<br>
                 Start configuring the project at <code>/config.php</code>.<br>
                 With the configuration done, look at <code>/app/services/ImportService.php</code> and check the files that will be imported. It is up to you for changes!
-                <br>If you want to add more plugins or see the already available plugings, check <code>/plugins</code>.<br>
+                <br>If you want to add more plugins or see the already available plugins, check <code>/plugins</code>.<br>
                 <br>
                 <b>Examples</b><br>
                 <a target="_blank" href="<?= UrlService::addBaseUrl("app/pages/ChartPage.php");?>">Charts</a><br>

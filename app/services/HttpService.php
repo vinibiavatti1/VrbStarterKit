@@ -9,15 +9,31 @@ ImportService::importPhpModules();
 class HttpService {
     
     /**
+     * Get variable from input type. Use INPUT constants as type for this
+     * function
+     * @param type $type
+     * @param type $name
+     * @param type $default
+     * @return type
+     */
+    public static function input($type, $name, $default = null) {
+        $value = filter_input($type, $name, FILTER_SANITIZE_MAGIC_QUOTES);
+        if($value == null) {
+            return $default;
+        }
+        return $value;
+    }
+    
+    /**
      * Get "GET" variable
      * @param string $name
-     * @param mixed $else
+     * @param mixed $default
      * @return mixed
      */
-    public static function get($name, $else = null) {
+    public static function get($name, $default = null) {
         $value = filter_input(INPUT_GET, $name, FILTER_SANITIZE_MAGIC_QUOTES);
         if($value == null) {
-            return $else;
+            return $default;
         }
         return $value;
     }
@@ -25,13 +41,13 @@ class HttpService {
     /**
      * Get "POST" variable
      * @param string $name
-     * @param mixed $else
+     * @param mixed $default
      * @return mixed
      */
-    public static function post($name, $else = null) {
+    public static function post($name, $default = null) {
         $value = filter_input(INPUT_POST, $name, FILTER_SANITIZE_MAGIC_QUOTES);
         if($value == null) {
-            return $else;
+            return $default;
         }
         return $value;
     }
@@ -39,13 +55,13 @@ class HttpService {
     /**
      * Get "GET" variable not empty
      * @param string $name
-     * @param mixed $else
+     * @param mixed $default
      * @return mixed
      */
-    public static function getNotEmpty($name, $else = null) {
+    public static function getNotEmpty($name, $default = null) {
         $value = Serv_Http::get($name);
         if($value == '') {
-            return $else;
+            return $default;
         }
         return $value;
     }
@@ -53,13 +69,13 @@ class HttpService {
     /**
      * Get "POST" variable not empty
      * @param string $name
-     * @param mixed $else
+     * @param mixed $default
      * @return mixed
      */
-    public static function postNotEmpty($name, $else = null) {
+    public static function postNotEmpty($name, $default = null) {
         $value = Serv_Http::post($name);
         if($value == '') {
-            return $else;
+            return $default;
         }
         return $value;
     }

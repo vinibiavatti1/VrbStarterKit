@@ -20,6 +20,29 @@ class SecurityService {
         http_response_code($errorCode);
         exit;
     }
+    
+    /**
+     * Validate input params. Use INPUT constants to define the input type to
+     * check
+     * @param type $type
+     * @param type $names
+     * @param type $return
+     * @param type $message
+     * @param type $errorCode
+     * @return boolean
+     */
+    public static function validateInputParams($type, $names, $return = false, $message = HttpMessageTypes::UNAUTHORIZED, $errorCode = 401) {
+        foreach ($names as $name) {
+            $value = filter_input($type, $name);
+            if($value == null) {
+                if($return) {
+                    return false;
+                }
+                SecurityService::unauthorized($message, $errorCode);
+            }
+        }
+        return true;
+    }
 
 
     /**

@@ -6,14 +6,14 @@ ImportService::importPhpModules();
 EventService::ajax();
 
 // Validate params and access rights
-SecurityService::validateGetParams(["value"]);
+SecurityService::validateInputParams(INPUT_GET, ["value"]);
 SecurityService::validateModule(Const_Modulo::CADASTROS);
 SecurityService::validatePermission([Const_Permissao::CADASTRAR]);
 SecurityService::validateLicense([Const_Licenca::STANDARD, Const_Licenca::ENTERPRISE]);
 
 // Get HTTP params
-$valor_1 = HttpService::get("value");
-$valor_2 = HttpService::post("value_2", -1);
+$valor_1 = HttpService::input(INPUT_POST, "value");
+$valor_2 = HttpService::input(INPUT_POST, "value_2", -1);
 
 // Response
 $response = new JsonResponseErrorComponent(200, 'Success');

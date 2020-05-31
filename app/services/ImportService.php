@@ -55,7 +55,7 @@ class ImportService {
      * <ul>
      *  <li>/app/components</li>
      *  <li>/app/types</li>
-     *  <li>/app/cruds</li>
+     *  <li>/app/repositories</li>
      *  <li>/app/services</li>
      *  <li>/config.php</li>
      * </ul>
@@ -63,7 +63,7 @@ class ImportService {
     public static function importPhpModules() {
         ImportService::importPhpModulesFromDir(__DIR__ . "/../components");
         ImportService::importPhpModulesFromDir(__DIR__ . "/../types");
-        ImportService::importPhpModulesFromDir(__DIR__ . "/../cruds");
+        ImportService::importPhpModulesFromDir(__DIR__ . "/../repositories");
         ImportService::importPhpModulesFromDir(__DIR__ . "/../services");
         require_once(__DIR__ . "/../../config.php");
     }
