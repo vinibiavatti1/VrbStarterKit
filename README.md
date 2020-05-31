@@ -36,6 +36,7 @@ The services are default functionalities for usage. There are different kinds of
 
 Service|Definition
 ---|---
+`Base64Service`|Operations to encode and decode files input with Base64
 `DatabaseService`|Database connection service
 `HeaderService`|HTTP header manipulation
 `CookieService`|Cookie manipulation service
