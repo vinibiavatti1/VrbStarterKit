@@ -7,7 +7,7 @@ To start to use this kit, download or clone this repository in your project dire
 ## Configuration
 When you start the project, the **config.php** file needs to be configured according with project definitions. Some configurations as the title, key-words, responsivity, access data for database, base url, etc... need to be defined correctly. We recommend much to clone this file with production configuration (example: <b>productionConfig.php</b>), and change to the correct config file when the application gets up to prodution environment. 
 
-> The <b>MATERIAL_DESIGN</b> is about the CSS framework kind you will use. By default, the bootstrap is set to the project, but you can change it to use the Material Design if you want. If you chose the material design, some util components can stop to work, and these components need to be reimplemented.
+> The <b>CSS_FRAMEWORK</b> is about the CSS framework kind you will use. The available options are: BOOTSTRAP, MATERIALIZE or UIKIT. By default, the BOOTSTRAP is set to the project, but you can change it to use the Materialize or Uikit if you want. If you chose other then Bootstrap (default), some util components can stop to work, and these components need to be reimplemented.
 
 > The <b>IDIOM</b> configuration can be defined in the configuration file based on the files inside the **/app/translates** directory. If there is a session parameter configured in the <b>$_SESSION['IDIOMA']</b>, this configuration will be used as priority and the file that will be used will be the specified file for this key value.
 
