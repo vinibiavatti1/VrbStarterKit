@@ -9,7 +9,7 @@ When you start the project, the **config.php** file needs to be configured accor
 
 > The <b>CSS_FRAMEWORK</b> is about the CSS framework kind you will use. The available options are: BOOTSTRAP, MATERIALIZE or UIKIT. By default, the BOOTSTRAP is set to the project, but you can change it to use the Materialize or Uikit if you want. If you chose other then Bootstrap (default), some util components can stop to work, and these components need to be reimplemented.
 
-> The <b>IDIOM</b> configuration can be defined in the configuration file based on the files inside the **/app/translates** directory. If there is a session parameter configured in the <b>$_SESSION['IDIOMA']</b>, this configuration will be used as priority and the file that will be used will be the specified file for this key value.
+> The <b>IDIOM</b> configuration can be defined in the configuration file based on the files inside the **/app/translates** directory. If there is a session parameter configured in the <b>$_SESSION['IDIOM']</b>, this configuration will be used as priority and the file that will be used will be the specified file for this key value.
 
 ## Patterns
 The project uses camel case for any identifier. Every default PHP resources are in the <b>/app</b> folder.
