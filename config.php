@@ -38,9 +38,9 @@ class Config {
     const LOG = true;
     const LOG_TYPE = ["INFO", "ERROR", "DEBUG", "SQL"];
     
-    // CSS Framework options: (BOOTSTRAP, MATERIALIZE, UIKIT)
-    // Keep it blank if there is no Framework to use for application
-    const CSS_FRAMEWORK = "BOOTSTRAP";
+    // CSS Framework (In material design some default components can not work
+    // as expected)
+    const MATERIAL_DESIGN = false;
     
     // Password/token generation salt
     const SALT = "73ef930e2b797a5b5daa73cf3a3025ce853d1bb8";
@@ -68,6 +68,6 @@ class Config {
      * @return mixed
      */
     public static function getConfig($key) {
-        return Config::$key;
+        return Config::$name;
     }
 }

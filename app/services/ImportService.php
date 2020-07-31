@@ -15,17 +15,8 @@ class ImportService {
     public static function importCssModules() {
         ?>
         <link href="<?= UrlService::addBaseUrl("/app/styles/GeneralCss.css") ?>" rel="stylesheet" type="text/css"/>    
-        
-        <?php if(Config::CSS_FRAMEWORK == "BOOTSTRAP") { ?>
-            <link href="<?= UrlService::addBaseUrl("/plugins/bootstrap-4.3.1/css/bootstrap.min.css")?>" rel="stylesheet" type="text/css"/>
-            <link href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous" rel="stylesheet">
-        <?php } else if(Config::CSS_FRAMEWORK == "MATERIALIZE") { ?>
-            <link href="<?= UrlService::addBaseUrl("/plugins/materialize-1.0.0/css/materialize.min.css") ?>" rel="stylesheet" type="text/css"/>
-            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous" rel="stylesheet">
-        <?php } else if(Config::CSS_FRAMEWORK == "UIKIT") { ?>
-            <link href="<?= UrlService::addBaseUrl("/plugins/uikit-3.5.5/css/uikit.min.css") ?>" rel="stylesheet" type="text/css"/>
-        <?php } ?>
-        
+        <link href="<?= UrlService::addBaseUrl(Config::MATERIAL_DESIGN ? "/plugins/materialize-1.0.0/css/materialize.min.css" : "/plugins/bootstrap-4.3.1/css/bootstrap.min.css") ?>" rel="stylesheet" type="text/css"/>
+        <link href="<?= Config::MATERIAL_DESIGN ? "https://fonts.googleapis.com/icon?family=Material+Icons" : "https://use.fontawesome.com/releases/v5.6.0/css/all.css" ?>" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous" rel="stylesheet">
         <link href="<?= UrlService::addBaseUrl("/plugins/datatable-1.10.18/css/jquery.dataTables.min.css") ?>" rel="stylesheet" type="text/css"/>
         <link href="<?= UrlService::addBaseUrl("/plugins/select2-4.0.6/css/select2.min.css") ?>" rel="stylesheet" type="text/css"/>
         <link href="<?= UrlService::addBaseUrl("/plugins/fancybox-3.5.7/jquery.fancybox.min.css") ?>" rel="stylesheet" type="text/css"/>
@@ -45,16 +36,7 @@ class ImportService {
         <script src="<?=UrlService::addBaseUrl("/plugins/jquery-3.3.1/jquery.js")?>" type="text/javascript"></script>
         <script src="<?=UrlService::addBaseUrl("/plugins/datatable-1.10.18/js/jquery.dataTables.min.js")?>" type="text/javascript"></script>
         <script src="<?=UrlService::addBaseUrl("/plugins/bootstrap-4.3.1/js/popper.min.js")?>" type="text/javascript"></script>
-       
-        <?php if(Config::CSS_FRAMEWORK == "BOOTSTRAP") { ?>
-            <script src="<?=UrlService::addBaseUrl("/plugins/bootstrap-4.3.1/js/bootstrap.min.js")?>" type="text/javascript"></script>
-        <?php } else if(Config::CSS_FRAMEWORK == "MATERIALIZE") { ?>
-            <script src="<?=UrlService::addBaseUrl("/plugins/materialize-1.0.0/js/materialize.min.js")?>" type="text/javascript"></script>
-        <?php } else if(Config::CSS_FRAMEWORK == "UIKIT") { ?>
-            <script src="<?=UrlService::addBaseUrl("/plugins/uikit-3.5.5/js/uikit.min.js")?>" type="text/javascript"></script>
-            <script src="<?=UrlService::addBaseUrl("/plugins/uikit-3.5.5/js/uikit-icons.min.js")?>" type="text/javascript"></script>
-        <?php } ?>
-        
+        <script src="<?=UrlService::addBaseUrl(Config::MATERIAL_DESIGN ? "/plugins/materialize-1.0.0/js/materialize.min.js" : "/plugins/bootstrap-4.3.1/js/bootstrap.min.js")?>" type="text/javascript"></script>
         <script src="<?=UrlService::addBaseUrl("/plugins/select2-4.0.6/js/select2.full.min.js")?>" type="text/javascript"></script>
         <script src="<?=UrlService::addBaseUrl("/plugins/fancybox-3.5.7/jquery.fancybox.min.js")?>" type="text/javascript"></script>
         <script src="<?=UrlService::addBaseUrl("/plugins/sweetalert-2.1.1/sweetalert.min.js")?>" type="text/javascript"></script>
