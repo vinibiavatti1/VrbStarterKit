@@ -68,6 +68,6 @@ class Config {
      * @return mixed
      */
     public static function getConfig($key) {
-        return Config::$name;
+        return Config::$key;
     }
 }

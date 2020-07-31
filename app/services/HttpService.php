@@ -59,7 +59,7 @@ class HttpService {
      * @return mixed
      */
     public static function getNotEmpty($name, $default = null) {
-        $value = Serv_Http::get($name);
+        $value = HttpService::get($name);
         if($value == '') {
             return $default;
         }
@@ -73,7 +73,7 @@ class HttpService {
      * @return mixed
      */
     public static function postNotEmpty($name, $default = null) {
-        $value = Serv_Http::post($name);
+        $value = HttpService::post($name);
         if($value == '') {
             return $default;
         }
@@ -86,7 +86,7 @@ class HttpService {
      * @return boolean
      */
     public static function getExists($name) {
-        return Serv_Http::get($name) != null;
+        return HttpService::get($name) != null;
     }
     
     /**
@@ -95,7 +95,7 @@ class HttpService {
      * @return boolean
      */
     public static function postExists($name) {
-        return Serv_Http::post($name) != null;
+        return HttpService::post($name) != null;
     }
     
     /**
@@ -104,7 +104,7 @@ class HttpService {
      * @return boolean
      */
     public static function getExistsNotEmpty($name) {
-        return Serv_Http::get($name) != null && Serv_Http::get($name) != '';
+        return HttpService::get($name) != null && HttpService::get($name) != '';
     }
     
     /**
@@ -113,7 +113,7 @@ class HttpService {
      * @return boolean
      */
     public static function postExistsNotEmpty($name) {
-        return Serv_Http::post($name) != null && Serv_Http::post($name) != '';
+        return HttpService::post($name) != null && HttpService::post($name) != '';
     }
     
     /**
@@ -122,7 +122,7 @@ class HttpService {
      * @return boolean
      */
     public static function getSha1($name) {
-        return Serv_Http::existe_get($name) ? sha1(Serv_Http::get($name)) : null;
+        return HttpService::existe_get($name) ? sha1(HttpService::get($name)) : null;
     }
     
     /**
@@ -131,6 +131,6 @@ class HttpService {
      * @return boolean
      */
     public static function postSha1($name) {
-        return Serv_Http::existe_post($name) ? sha1(Serv_Http::post($name)) : null;
+        return HttpService::existe_post($name) ? sha1(HttpService::post($name)) : null;
     }
 }
