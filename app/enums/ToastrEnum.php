@@ -1,5 +1,5 @@
 <?php
-class ToastrTypes {
+class ToastrEnum {
     const SUCCESS = "success";
     const ERROR = "error";
     const INFO = "info";

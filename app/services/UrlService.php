@@ -43,24 +43,18 @@ class UrlService {
     /**
      * Redirect to URL
      * @param string $url
-     */
-    public static function redirect($url) {
-        $url_redirect = UrlService::addBaseUrl($url);
-        header("location: $url_redirect");
-        exit;
-    }
-    
-    /**
-     * Redirect to URL with status code
-     * @param string $url
      * @param mixed $status
      */
-    public static function redirectWithStatus($url, $status) {
+    public static function redirect($url, $status = null) {
         $url_redirect = UrlService::addBaseUrl($url);
-        header("location: $url_redirect?status=$status");
+        if($status == null) {
+            header("location: $url_redirect");
+        } else {
+            header("location: $url_redirect?status=$status");
+        }
         exit;
     }
-    
+
     /**
      * Add the configured base url in the url param and return it
      * @param string $url
@@ -98,7 +92,7 @@ class UrlService {
      */
     public static function getCleanedUrl() {
         $req = explode('?', filter_input(INPUT_SERVER, 'REQUEST_URI'), 2);
-        $http = Serv_Url::is_https() ? "https://" : "http://";
+        $http = UrlService::isHttps() ? "https://" : "http://";
         return $http . filter_input(INPUT_SERVER, 'HTTP_HOST') . $req[0];
     }
     

@@ -10,7 +10,7 @@ class LogService {
     /**
      * Insert new exception log
      * @param Exception $exception
-     * @param LogTypes $type
+     * @param LogEnum $type
      * @param string $sql
      */
     public static function logException($exception, $type, $sql = null) {
@@ -27,7 +27,7 @@ class LogService {
     /**
      * Insert new log
      * @param string $message
-     * @param LogTypes $type
+     * @param LogEnum $type
      * @param string $sql
      */
     public static function log($message, $type, $sql = null) {
@@ -43,12 +43,12 @@ class LogService {
     /**
      * Create log message
      * @param string $message
-     * @param LogTypes $type
+     * @param LogEnum $type
      * @param string $sql
      * @return type
      */
     private static function createLogMessage($message, $type, $sql) {
-        $userId = SessionService::get(SessionTypes::USER_ID_KEY);
+        $userId = SessionService::get(SessionEnum::USER_ID_KEY);
         $url = filter_input(INPUT_SERVER, "REQUEST_URI");
         $ip = IpService::getIp();
         return "TYPE: $type, USERID: $userId, URL: $url, IP: $ip, SQL: $sql, MESSAGE: $message";

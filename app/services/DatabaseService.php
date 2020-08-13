@@ -33,35 +33,30 @@ class DatabaseService {
     /**
      * Execute query
      * @param string $sql
+     * @return Result set
      */
     public static function executeQuery($sql) {
         $connection = DatabaseService::connect();
         $rs = mysqli_query($connection, $sql);
         if(!$rs) {
             $error = mysqli_error($connection);
-            LogService::log($error, LogService::ERROR, $sql);
-            return $error;
+            LogService::log($error, LogEnum::SQL, $sql);
+            self::renderSqlError($error, $sql);
         }
-        LogService::log("SQL execution command (query)", LogService::SQL, $sql);
-        return $rs;
     }
     
     /**
      * Execute update
      * @param string $sql
-     * @return error - Return false if the execution gets ok, otherwise returns
-     * the error
      */
     public static function executeUpdate($sql) {
         $connection = DatabaseService::connect();
         $rs = mysqli_query($connection, $sql);
         if(!$rs) {
             $error = mysqli_error($connection);
-            LogService::log($error, LogService::ERRO, $sql);
-            return $error;
+            LogService::log($error, LogEnum::SQL, $sql);
+            self::renderSqlError($error, $sql);
         }
-        LogService::log("SQL execution command (update)", LogService::SQL, $sql);
-        return false;
     }
     
     /**
@@ -151,5 +146,37 @@ class DatabaseService {
     public static function getLastInsertedId($table, $idColumn = "id") {
         $rs = DatabaseService::executeQuery("SELECT MAX($idColumn) AS ID FROM $table");
         return mysqli_fetch_assoc($rs);
+    }
+    
+    /**
+     * Check user active. 
+     * <b>Maybe this method needs to be modified.</b>
+     * @param type $userId
+     */
+    public static function checkUserActive($userId) {
+        $rs = DatabaseService::executeQuery("SELECT id FROM usuario WHERE id = $userId AND ativo = 1");
+        return DatabaseService::getNumRows($rs) > 0;
+    }
+    
+    /**
+     * Render sql error page
+     * @param type $message
+     * @param type $sql
+     */
+    private static function renderSqlError($message, $sql) {
+        ?>
+        <html>
+            <head>
+                <?php HtmlService::metatags() ?>
+            </head>
+            <body>
+                <b>Error!</b><br><br>
+                Message: <?=$message?><br>
+                SQL: <?=$sql?><br><br>
+                <a href="javascript:history.back()">Back</a>
+            </body>
+        </html>
+        <?php
+        die;
     }
 }

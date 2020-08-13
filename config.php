@@ -18,14 +18,14 @@ class Config {
     const VERSION = "1.0.0";
     
     // Locale
-    const IDIOM = "en_US";
+    const IDIOM = "pt_BR";
     const TIMEZONE = "America/Sao_Paulo";
     const DATE_FORMAT = "d/m/Y";
     const DATETIME_FORMAT = "d/m/Y H:i:s";
 
     // Base URL and page configurations
     const BASE_URL = "http://localhost/VrbStarterKit";
-    const INITIAL_PAGE = "WelcomePage.php";
+    const INITIAL_PAGE = "HomePage.php";
     
     // Database access configuration
     const DATABASE_HOST = "localhost";
@@ -37,11 +37,7 @@ class Config {
     // Log (Its is recommended to keep just ERROR for production)
     const LOG = true;
     const LOG_TYPE = ["INFO", "ERROR", "DEBUG", "SQL"];
-    
-    // CSS Framework (In material design some default components can not work
-    // as expected)
-    const MATERIAL_DESIGN = false;
-    
+
     // Password/token generation salt
     const SALT = "73ef930e2b797a5b5daa73cf3a3025ce853d1bb8";
     

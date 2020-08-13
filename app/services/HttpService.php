@@ -133,4 +133,28 @@ class HttpService {
     public static function postSha1($name) {
         return HttpService::existe_post($name) ? sha1(HttpService::post($name)) : null;
     }
+    
+    /**
+     * Get "FILE" param
+     * @param type $name
+     * @param type $default
+     * @return type
+     */
+    public static function file($name, $default = null) {
+        return $_FILES[$name] ??  $default;
+    }
+    
+    /**
+     * Get tmp_name information from $_FILES input and convert data to Base64
+     * @param type $name
+     * @param type $default
+     * @return type
+     */
+    public static function fileAsBase64($name, $default = null) {
+        if(isset($_FILES[$name]) && isset($_FILES[$name]["tmp_name"]) && !empty($_FILES[$name]["tmp_name"])) {
+            $content = file_get_contents($_FILES[$name]["tmp_name"]);
+            return base64_encode($content);
+        }
+        return $default;
+    }
 }

@@ -16,16 +16,25 @@ EventService::page();
         ?>
     </head>
     <body>
-        <?php 
+        <?php
         StatusComponent::create();
         ?>
-        <div class="container">
+        <div>
             <div class="row">
-                <div class="col col-sm-12 col-lg-4 offset-lg-4" style="margin-top: 100px">
-                    <?php 
-                        $loginComponent = new LoginComponent(UrlService::addBaseUrl("/app/actions/LoginAction.php"));
-                        $loginComponent->render();
-                    ?>
+                <div class="col s12 m8 l6 offset-l3 offset-m2">
+                    <form action="<?= UrlService::addBaseUrl("/app/actions/LoginAction.php") ?>" method="POST">
+                        <div class="login-panel shadow-sm card">
+                            <div class="card-content">
+                                <h5 class="light" style="margin-top: 0px">Login</h5>
+                                <hr>
+                                E-mail
+                                <input type="email" class="form-control" id="email" placeholder="Insira seu e-mail" name="email" required="">
+                                Senha
+                                <input type="password" class="form-control" id="password" placeholder="Insira sua senha" name="password" required="">
+                                <button type="submit" class="btn btn-primary" style="width: 100%">Login</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

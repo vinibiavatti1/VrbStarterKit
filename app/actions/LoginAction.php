@@ -11,9 +11,8 @@ $password = HttpService::post("password");
 
 // Do login (Example)
 if($email == 'admin@admin.com' && $password == 'admin') {
-    SessionService::setActiveSession();
-    SessionService::set(SessionTypes::USER_ID_KEY, $email);
-    UrlService::redirectWithStatus("app/pages/LoginPage.php", "LOGIN_SUCCESS");            
+    SessionService::set(SessionEnum::USER_ID_KEY, $email);
+    UrlService::redirect("app/pages/LoginPage.php", "LOGIN_SUCCESS");
 } else {
-    UrlService::redirectWithStatus("app/pages/LoginPage.php", "LOGIN_FAILED");
+    UrlService::redirect("app/pages/LoginPage.php", "LOGIN_FAILED");
 }

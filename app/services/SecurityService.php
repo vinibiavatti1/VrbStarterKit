@@ -9,18 +9,7 @@ ImportService::importPhpModules();
  * parameters to validate some access rights. @see SessionService
  */
 class SecurityService {
-    
-    /**
-     * Return unauthorized
-     * @param string $message
-     * @param int $errorCode
-     */
-    public static function unauthorized($message = HttpMessageTypes::UNAUTHORIZED, $errorCode = 401) {
-        echo($message);
-        http_response_code($errorCode);
-        exit;
-    }
-    
+ 
     /**
      * Validate input params. Use INPUT constants to define the input type to
      * check
@@ -31,7 +20,7 @@ class SecurityService {
      * @param type $errorCode
      * @return boolean
      */
-    public static function validateInputParams($type, $names, $return = false, $message = HttpMessageTypes::UNAUTHORIZED, $errorCode = 401) {
+    public static function validateInputParams($type, $names, $return = false, $message = HttpMessageEnum::UNAUTHORIZED, $errorCode = 401) {
         foreach ($names as $name) {
             $value = filter_input($type, $name);
             if($value == null) {
@@ -50,7 +39,7 @@ class SecurityService {
      * @param array $names
      * @param string $message
      */
-    public static function validateGetParams($names, $return = false, $message = HttpMessageTypes::UNAUTHORIZED, $errorCode = 401) {
+    public static function validateGetParams($names, $return = false, $message = HttpMessageEnum::UNAUTHORIZED, $errorCode = 401) {
         foreach ($names as $name) {
             $value = filter_input(INPUT_GET, $name);
             if($value == null) {
@@ -71,7 +60,7 @@ class SecurityService {
      * @param int $errorCode
      * @return boolean
      */
-    public static function validatePostParams($names, $return = false, $message = HttpMessageTypes::UNAUTHORIZED, $errorCode = 401) {
+    public static function validatePostParams($names, $return = false, $message = HttpMessageEnum::UNAUTHORIZED, $errorCode = 401) {
         foreach ($names as $name) {
             $value = filter_input(INPUT_POST, $name);
             if($value == null) {
@@ -87,9 +76,9 @@ class SecurityService {
     /**
      * Validate session checking the session keys. Example:<br>
      * <code>
-     * SecurityService::validateSession([SessionTypes::USER_ID_KEY]); // Unauthorized
-     * SessionService::set(SessionTypes::USER_ID_KEY, 1);
-     * SecurityService::validateSession([SessionTypes::USER_ID_KEY]); // Access allowed
+     * SecurityService::validateSession([SessionEnum::USER_ID_KEY]); // Unauthorized
+     * SessionService::set(SessionEnum::USER_ID_KEY, 1);
+     * SecurityService::validateSession([SessionEnum::USER_ID_KEY]); // Access allowed
      * </code>
      * @param array $keys
      * @param boolean $return
@@ -97,9 +86,9 @@ class SecurityService {
      * @param int $errorCode
      * @return boolean
      * @see SessionService
-     * @see SessionTypes
+     * @see SessionEnum
      */
-    public static function validateSession($keys, $return = false, $message = Serv_Http::HTTP_NAO_AUTORIZADO, $errorCode = 401) {
+    public static function validateSessionKeys($keys, $return = false, $message = HttpMessageEnum::UNAUTHORIZED, $errorCode = 401) {
         foreach($keys as $key) {
             if(!isset($_SESSION[$key])) {
                 if($return) {
@@ -115,25 +104,26 @@ class SecurityService {
     }
 
     /**
-     * Validate if the user has access to module. Example:<br>
+     * Validate session parameter<br>
      * <code>
-     * SessionService::setModules([ModuleTypes::REGISTERS]);<br>
-     * SecurityService::validateModule(ModuleTypes::REGISTERS); // Access allowed<br>
-     * SecurityService::validateModule(ModuleTypes::REPORTS); // Unauthorized
+     * SessionService::set(SessionEnum::USER_ID_KEY, 1);<br>
+     * SecurityService::validateSessionValue(SessionEnum::USER_ID_KEY, 1); // Access allowed<br>
+     * SecurityService::validateSessionValue(SessionEnum::USER_ID_KEY, 2); // Unauthorized
      * </code>
-     * @param ModuleTypes $module
+     * @param SessionEnum $key
+     * @param $value
      * @param boolean $return
      * @param string $message
      * @param int $errorCode
      * @return boolean
-     * @see SessionService::setModules
-     * @see ModuleTypes
+     * @see SessionService::set
+     * @see SessionEnum
      */
-    public static function validateModule($module, $return = false, $message = Serv_Http::HTTP_NAO_AUTORIZADO, $errorCode = 401) {
+    public static function validateSessionValue($key, $value, $return = false, $message = HttpMessageEnum::UNAUTHORIZED, $errorCode = 401) {
         $valid = true;
-        if(!isset($_SESSION[SessionTypes::MODULES_KEY])) {
+        if(!isset($_SESSION[$key])) {
             $valid = false;
-        } else if(!in_array($module, $_SESSION[SessionTypes::MODULES_KEY])) {
+        } else if($_SESSION[$key] != $value) {
             $valid = false;
         }
         if($return) {
@@ -145,68 +135,52 @@ class SecurityService {
     }
     
     /**
-     * Validate if the user has access to location by license. Example:<br>
-     * <code>
-     * SessionService::setLicense(LicenseTypes::STANDARD);<br>
-     * SecurityService::validateLicense([LicenseTypes::STANDARD]); // Access allowed<br>
-     * SecurityService::validateLicense([LicenseTypes::ENTERPRISE]); // Unauthorized
-     * </code>
-     * @param array $licenses
+     * Validate user login.
      * @param boolean $return
      * @param string $message
      * @param int $errorCode
      * @return boolean
-     * @see SessionService::setLicense
-     * @see LicenseTypes
      */
-    public static function validateLicense($licenses, $return = false, $message = Serv_Http::HTTP_NAO_AUTORIZADO, $errorCode = 401) {
-        $valid = true;
-        if(!isset($_SESSION[SessionTypes::LICENSE_KEY])) {
-            $valid = false;
-        } else if(!in_array($_SESSION[SessionTypes::LICENSE_KEY], $licenses)) {
-            $valid = false;
+    public static function validateLogin($return = false, $message = HttpMessageEnum::UNAUTHORIZED, $errorCode = 401) {
+        $userId = SessionService::get(SessionEnum::USER_ID_KEY);
+        if($userId == null) {
+            if($return) {
+                return false;
+            } else {
+                SecurityService::unauthorized($message, $errorCode);
+            }
         }
-        if($return) {
-            return $valid;
-        }
-        if(!$valid) {
-            SecurityService::unauthorized($message, $errorCode);
-        }
-    }
-    
-    /**
-     * Validate access rights. Example:<br>
-     * <code>
-     * SessionService::setPermissions([PermissionTypes::INSERT]);<br>
-     * SecurityService::validatePermission([PermissionTypes::INSERT]); // Access allowed<br>
-     * SecurityService::validatePermission([PermissionTypes::UPDATE]); // Unauthorized
-     * </code>
-     * @param array $permissions
-     * @param boolean $return
-     * @param string $message
-     * @param int $errorCode
-     * @see SessionService::setPermissions
-     * @see PermissionTypes
-     */
-    public static function validatePermission($permissions, $return = false, $message = Serv_Http::HTTP_NAO_AUTORIZADO, $errorCode = 401) {
-        $valid = true;
-        if(!isset($_SESSION[SessionTypes::PERMISSIONS_KEY])) {
-            $valid = false;
-        } else {
-            $valid = false;
-            foreach ($permissions as $permission) {
-                if(in_array($permission, $_SESSION[SessionTypes::PERMISSIONS_KEY])) {
-                    $valid = true;
-                }
+        if(!DatabaseService::checkUserActive($userId)) {
+            if($return) {
+                return false;
+            } else {
+                SecurityService::unauthorized($message, $errorCode);
             }
         }
         if($return) {
-            return $valid;
-        }
-        if(!$valid) {
-            SecurityService::unauthorized($message, $errorCode);
+            return true;
         }
     }
     
+    /**
+     * Return unauthorized
+     * @param string $message
+     * @param int $errorCode
+     */
+    public static function unauthorized($message = HttpMessageEnum::UNAUTHORIZED, $errorCode = 401) {
+        ?>
+        <html>
+            <head>
+                <?php HtmlService::metatags() ?>
+            </head>
+            <body>
+                <?=$message?><br>
+                <a href="javascript:history.back()">Back</a>
+            </body>
+        </html>
+        <?php
+        http_response_code($errorCode);
+        die;
+    }
 }
 

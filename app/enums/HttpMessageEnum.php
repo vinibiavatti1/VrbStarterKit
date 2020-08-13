@@ -1,5 +1,5 @@
 <?php
-class HttpMessageTypes {
+class HttpMessageEnum {
     const SUCCESS = "200 - OK";
     const BAD_REQUEST = "400 - Bad request";
     const UNAUTHORIZED = "401 - Unauthorized";

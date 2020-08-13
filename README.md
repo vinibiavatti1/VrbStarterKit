@@ -7,8 +7,6 @@ To start to use this kit, download or clone this repository in your project dire
 ## Configuration
 When you start the project, the **config.php** file needs to be configured according with project definitions. Some configurations as the title, key-words, responsivity, access data for database, base url, etc... need to be defined correctly. We recommend much to clone this file with production configuration (example: <b>productionConfig.php</b>), and change to the correct config file when the application gets up to prodution environment. 
 
-> The <b>MATERIAL_DESIGN</b> is about the CSS framework kind you will use. By default, the bootstrap is set to the project, but you can change it to use the Material Design if you want. If you chose the material design, some util components can stop to work, and these components need to be reimplemented.
-
 > The <b>IDIOM</b> configuration can be defined in the configuration file based on the files inside the **/app/translates** directory. If there is a session parameter configured in the <b>$_SESSION['IDIOM']</b>, this configuration will be used as priority and the file that will be used will be the specified file for this key value.
 
 ## Patterns
@@ -17,9 +15,9 @@ The files use a suffix to define the kind of this file. The table below shows th
 
 Suffix|Location|Description
 ---|---|---
-`Page`|/app/pages|Páginas
+`Page`|/app/pages|Pages
 `Service`|/app/services|Default functionalities collection
-`Types`|/app/types|Constants collection
+`Enum`|/app/enums|Constants collection
 `Action`|/app/actions|Form actions
 `Ajax`|/app/ajax|Return services for ajax requests
 `Component`|/app/componentes|Components
@@ -36,7 +34,6 @@ The services are default functionalities for usage. There are different kinds of
 
 Service|Definition
 ---|---
-`Base64Service`|Operations to encode and decode files input with Base64
 `DatabaseService`|Database connection service
 `HeaderService`|HTTP header manipulation
 `CookieService`|Cookie manipulation service
@@ -64,7 +61,7 @@ importCssModules()|Function to import CSS files using the tag: ```<link href="" 
 importJsModules()|Function to import JS files using the tag: ```<script src=""></script>```
 importPhpModules()|Function to import PHP files using the method: ```require_once() ```
 
-> The function ```ImportService::importPhpModules() ``` imports any PHP file from the folders <b>/app/components</b>, <b>/app/types</b>, <b>/app/repositories</b> e <b>/app/services</b>. The file <b>/config.php</b> is imported too. Files that have the prefix <b>ignore_</b> willbe ignored for importation.
+> The function ```ImportService::importPhpModules() ``` imports any PHP file from the folders <b>/app/components</b>, <b>/app/enums</b>, <b>/app/repositories</b> e <b>/app/services</b>. The file <b>/config.php</b> is imported too. Files that have the prefix <b>ignore_</b> willbe ignored for importation.
 
 ## Components
 There is an interface for component creation. This interface has 3 default methods. Each method is defined for a specified thing:
@@ -84,15 +81,7 @@ $component->render();
 ```
 
 ## Repositories
-The Repository classes are for database entity manipulation. The interface allows 5 methods to implementation. The interface implementation is not required. It is just a base content to help Repository classes implementation.
-
-Method|Definition
----|---
-get($id)|Get an object from database with specified ID
-list($filtros)|List some objects from database with specified filter
-insert($dados)|Insert an object entity to database
-delete($id)|Delete an object entity from database
-update($id, $dados)|Update the object identified by the informed id with new data
+The Repository classes are for database entity manipulation. Classes of Repository type usually have CRUD functions.
 
 ## Crons
 Cron classes have just an execution method to be called by cron jobs from server or other source. 
@@ -120,7 +109,7 @@ EventService::page();
     </head>
     <body>
         <?php 
-            // TODO
+            echo("Hello World");
         ?>
     </body>
     <script>

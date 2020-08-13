@@ -2,3 +2,11 @@
     box-sizing: border-box;
     font-size: 13px;
 }
+
+/* Toastr fix */
+#toast-container {
+    min-width: initial !important;
+}
+.toast {
+    top: initial !important;
+}

@@ -9,8 +9,10 @@ class StatusComponent extends Component {
     
     private $code = null;
     const STATUS_LIST = [
-        [ "code" => "LOGIN_SUCCESS", "type" => ToastrTypes::SUCCESS, "message" => "Login success" ],
-        [ "code" => "LOGIN_FAILED", "type" => ToastrTypes::ERROR, "message" => "Login failed" ],
+        [ "code" => "LOGIN_SUCCESS", "type" => ToastrEnum::SUCCESS, "message" => "Login efetuado com sucesso" ],
+        [ "code" => "LOGIN_FAILED", "type" => ToastrEnum::ERROR, "message" => "Usuário e/ou senha inválido(s)" ],
+        [ "code" => "SUCCESS", "type" => ToastrEnum::SUCCESS, "message" => "Ação realizada com sucesso" ],
+        [ "code" => "FAILED", "type" => ToastrEnum::ERROR, "message" => "Falha ao realizar ação" ],
         // Add more status
     ];
 

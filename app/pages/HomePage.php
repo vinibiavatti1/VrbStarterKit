@@ -17,7 +17,7 @@ EventService::page();
     </head>
     <body>
         <?php 
-            // TODO
+            echo("Hello World");
         ?>
     </body>
     <script>

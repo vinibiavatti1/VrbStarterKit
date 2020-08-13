@@ -10,7 +10,7 @@ class ToastrComponent extends Component {
     private $message;
     private $type;
     
-    public function __construct($message, $type = ToastrTypes::INFO) {
+    public function __construct($message, $type = ToastrEnum::INFO) {
         $this->tipo = $type;
         $this->mensagem = $message;
     }
@@ -54,7 +54,7 @@ class ToastrComponent extends Component {
         <?php
     }
     
-    public static function create($message, $type = ToastrTypes::INFO) {
+    public static function create($message, $type = ToastrEnum::INFO) {
         $component = new ToastrComponent($message, $type);
         $component->script();
     }

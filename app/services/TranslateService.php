@@ -32,7 +32,7 @@ class TranslateService {
      * Load dictionary
      */
     public static function loadDictionary() {
-        $idiom = SessionService::get(SessionTypes::IDIOM_KEY);
+        $idiom = SessionService::get(SessionEnum::IDIOM_KEY);
         @include_once(__DIR__ . "/../translates/" . ((isset($idiom) && $idiom != null) ? $idiom : Config::IDIOM) . ".php");
     }
     
