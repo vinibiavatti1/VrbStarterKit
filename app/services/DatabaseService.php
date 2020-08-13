@@ -43,6 +43,7 @@ class DatabaseService {
             LogService::log($error, LogEnum::SQL, $sql);
             self::renderSqlError($error, $sql);
         }
+        return $rs;
     }
     
     /**
