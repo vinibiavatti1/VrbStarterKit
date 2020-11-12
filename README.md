@@ -157,4 +157,4 @@ EventService::page();
 The background image has been made at https://lonewolfonline.net/geometric-background-generator/. Check the site for more details.
 
 ## About
-This project was developed in <b>Netbeans 8.1</b> IDE, using PHP language. The XAMPP envieronment was used for tests. The project is defined with <b>MIT</b> license (Open Source). Thanks and nice codding!
+This project was developed in <b>Netbeans 12.0</b> IDE, using PHP language. The XAMPP environment was used for tests. The project is defined with <b>MIT</b> license (Open Source). Thanks and nice codding!
