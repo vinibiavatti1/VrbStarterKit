@@ -1,6 +1,24 @@
 # VrbStarterKit
 The VrbStarterKit is a pre implemented project with util features for PHP projects that uses the raw PHP programming concept. This kit includes a collections of services, utilities, deafult patterns, configurations and pre defined plugins. 
 
+## VrbSimpleForms
+The new update for VrbStarterKit provided a new feature called <b>VrbSimpleForms</b>. This feature was created to give another way to create
+simple forms. This new version brought the files below for a specific purpose:
+
+File|Definition
+---|---
+`config/DynamicFormConfig.php`|Configuration of the auto generated forms pages
+`config/DynamicListConfig.php`|Configuration of the auto generated list pages
+`pages/DynamicFormPage.php`|Page that will generate the form by identifier
+`pages/DynamicListPage.php`|Page that will generate the list by identifier
+`actions/DynamicFormAction.php`|Action that will process the data of the form and the list (INSERT, UPDATE and DELETE)
+
+To configure a new form, you need to create a new static function in <b>DynamicFormConfig.php</b> that will return the configuration to create
+this form, and set this function in the main configuration method of this class, linked to some identifier (Use the example in the class to create your own form).
+For each form, you need to create a list too with the same identifier, in the <b>DynamicListConfig.php</b>. To check the list and the form rendered, just
+redirect to the <b>DynamicListPage.php?id=IDENTIFIER</b> where the IDENTIFIER is the key set in the configuration. Click in the <b>INSERT</b> button to check the
+form rendered too.
+
 ## Installation
 To start to use this kit, download or clone this repository in your project diretory. After it, turn on the server and try to access the index.php from any browser. If you get it, your kit installation is finished. If the access gets bad, or some redirect error gets occured, please check the **config.php** file and put the correct configuration in thepre defined keys. Try again and success! Check the section below for configuring instructions. 
 
@@ -95,24 +113,6 @@ The Repository classes are for database entity manipulation. Classes of Reposito
 
 ## Crons
 Cron classes have just an execution method to be called by cron jobs from server or other source. 
-
-## VrbSimpleForms
-The new update for VrbStarterKit provided a new feature called <b>VrbSimpleForms</b>. This feature was created to give another way to create
-simple forms. This new version brought the files below for a specific purpose:
-
-File|Definition
----|---
-config/DynamicFormConfig.php|Configure the auto generated forms pages
-config/DynamicListConfig.php|Configure the auto generated list pages
-pages/DynamicFormPage.php|Page that will generate the form by identifier
-pages/DynamicListPage.php|Page that will generate the list by identifier
-actions/DynamicFormAction.php|Action that will process the data of the form and the list (INSERT, UPDATE and DELETE)
-
-To configure a new form, you need to create a new static function in <b>DynamicFormConfig.php</b> that will return the configuration to create
-this form, and set this function in the main configuration method of this class, linked to some identifier (Use the example in the class to create your own form).
-For each form, you need to create a list too with the same identifier, in the <b>DynamicListConfig.php</b>. To check the list and the form rendered, just
-redirect to the <b>DynamicListPage.php?id=IDENTIFIER</b> where the IDENTIFIER is the key set in the configuration. Click in the <b>INSERT</b> button to check the
-form rendered too.
 
 ## Pages
 The application pages follows a design pattern. Check below for an example: 
