@@ -1,6 +1,86 @@
+/* General */
 * {
     box-sizing: border-box;
     font-size: 13px;
+}
+h1, h2, h3, h4, h5, h6 {
+    margin: 0px!important;
+}
+
+/* Custom styles */
+html {
+    background-color: #222;
+    background-image: url(../../resources/background.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+select {
+    border: 1px solid #9e9e9e !important;
+}
+.card-content {
+    padding: 10px!important;
+}
+form {
+    margin: 0px !important;
+}
+.required {
+    color: red;
+}
+code {
+    background-color: yellow;
+}
+.translucent {
+    background-color: rgba(0,0,0,0.5);
+}
+
+/* Input styles */
+input[type=month],
+input[type=week] {
+    display: block;
+    width: 100%;
+    height: 3em;
+}
+input[type=text]:focus + label {
+    color: #000 !important;
+}
+input[type=text]:focus, 
+input[type=number]:focus, 
+input[type=search]:focus, 
+input[type=email]:focus, 
+input[type=password]:focus,
+input[type=date]:focus,
+input[type=datetime-local]:focus,
+input[type=month]:focus,
+input[type=tel]:focus,
+input[type=time]:focus,
+input[type=url]:focus,
+input[type=week]:focus,
+textarea:focus {
+    border-bottom: 1px solid #000 !important;
+    box-shadow: 0 1px 0 0 #000 !important;
+}
+textarea {
+    height: 150px !important;
+}
+
+/* Table styles */
+table.striped > tbody > tr:nth-child(odd) {
+    background-color: #eee !important;
+}
+
+/* Body animation */
+body {
+    animation: body-animation 0.25s;
+}
+
+@KeyFrames body-animation {
+    from {
+        opacity: 0.0;
+    }
+    to {
+        opacity: 1.0;
+    }
 }
 
 /* Toastr fix */
@@ -9,4 +89,49 @@
 }
 .toast {
     top: initial !important;
+}
+
+/* Navbar style */
+.navbar {
+    margin-bottom: 20px;
+}
+.sidenav-title {
+    padding: 0 32px;
+    background-color: #ccc;
+    font-weight: bold;
+}
+.sidenav-header {
+    padding: 20px !important; 
+    line-height: initial !important;
+}
+
+/* Select2 Fix */
+.select2-search__field {
+    padding: 10px !important;
+    margin-bottom: 0px !important;
+    box-sizing: border-box !important;
+}
+.select2-selection {
+    display: block;
+    border-radius: 2px !important;
+    height: 3em !important;
+    padding: 5px 10px !important;
+}
+.select2-selection__rendered {
+    padding: 0px !important;
+    color: black !important;
+}
+
+/* Footer */
+.footer {
+    color: white;
+    padding: 10px;
+}
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+main {
+    flex: 1 0 auto;
 }

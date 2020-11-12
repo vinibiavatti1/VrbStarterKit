@@ -5,6 +5,13 @@
  * in the cloned file.
  */
 class Config {
+    
+    // VrbStarterKit defs (Do not change it)
+    const KIT_VERSION = "2020.11.11.23.30";
+    const FEATURES = [
+        "VrbStarterKit",
+        "VrbSimpleForms"
+    ];
 
     // General configurations
     const TITLE = "Site";
@@ -18,10 +25,10 @@ class Config {
     const VERSION = "1.0.0";
     
     // Locale
-    const IDIOM = "pt_BR";
-    const TIMEZONE = "America/Sao_Paulo";
-    const DATE_FORMAT = "d/m/Y";
-    const DATETIME_FORMAT = "d/m/Y H:i:s";
+    const IDIOM = "en_US";
+    const TIMEZONE = "UTC";
+    const DATE_FORMAT = "Y-m-d";
+    const DATETIME_FORMAT = "Y-m-d H:i:s";
 
     // Base URL and page configurations
     const BASE_URL = "http://localhost/VrbStarterKit";

@@ -54,6 +54,30 @@ class UrlService {
         }
         exit;
     }
+    
+    /**
+     * Redirect to page in /app/pages
+     * @param string $pageName
+     * @param type $status
+     */
+    public static function redirectToPage($pageName, $status = null) {
+        if(strpos($pageName, ".php") == false) {
+            $pageName .= ".php";
+        }
+        self::redirect("app/pages/$pageName", $status);
+    }
+    
+    /**
+     * Redirect to action in /app/actions
+     * @param string $actionName
+     * @param type $status
+     */
+    public static function redirectToAction($actionName, $status = null) {
+        if(strpos($actionName, ".php") == false) {
+            $actionName .= ".php";
+        }
+        self::redirect("app/actions/$actionName", $status);
+    }
 
     /**
      * Add the configured base url in the url param and return it
@@ -62,6 +86,30 @@ class UrlService {
      */
     public static function addBaseUrl($url) {
         return Config::BASE_URL . (substr($url, 0,1) == "/" ? $url : "/$url");
+    }
+    
+    /**
+     * Create a link to page
+     * @param string $pageName
+     * @return type
+     */
+    public static function linkToPage($pageName) {
+        if(strpos($pageName, ".php") == false) {
+            $pageName .= ".php";
+        }
+        return self::addBaseUrl("app/pages/$pageName");
+    }
+    
+    /**
+     * Create a link to action
+     * @param string $actionName
+     * @return type
+     */
+    public static function linkToAction($actionName) {
+        if(strpos($actionName, ".php") == false) {
+            $actionName .= ".php";
+        }
+        return self::addBaseUrl("app/actions/$actionName");
     }
     
     /**

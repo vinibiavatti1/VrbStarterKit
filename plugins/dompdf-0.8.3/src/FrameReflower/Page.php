@@ -145,7 +145,7 @@ class Page extends AbstractFrameReflower
             $this->_check_callbacks("begin_page_render", $child);
 
             // Render the page
-            $this->_frame->get_renderer()->render($child);
+            $this->_frame->get_renderer()->create($child);
 
             // Check for end render callback
             $this->_check_callbacks("end_page_render", $child);

@@ -141,7 +141,7 @@ class SecurityService {
      * @param int $errorCode
      * @return boolean
      */
-    public static function validateLogin($return = false, $message = HttpMessageEnum::UNAUTHORIZED, $errorCode = 401) {
+    public static function validateLogin($validateDatabaseUser = true, $return = false, $message = HttpMessageEnum::UNAUTHORIZED, $errorCode = 401) {
         $userId = SessionService::get(SessionEnum::USER_ID_KEY);
         if($userId == null) {
             if($return) {
@@ -150,11 +150,13 @@ class SecurityService {
                 SecurityService::unauthorized($message, $errorCode);
             }
         }
-        if(!DatabaseService::checkUserActive($userId)) {
-            if($return) {
-                return false;
-            } else {
-                SecurityService::unauthorized($message, $errorCode);
+        if($validateDatabaseUser) {
+            if(!DatabaseService::checkUserActive($userId)) {
+                if($return) {
+                    return false;
+                } else {
+                    SecurityService::unauthorized($message, $errorCode);
+                }
             }
         }
         if($return) {

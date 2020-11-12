@@ -28,6 +28,7 @@ Suffix|Location|Description
 `Js`|/app/scripts|Scripts with algorithms (JS)
 `Eula`|/app/eulas|Files with software policy
 `Sql`|/app/sqls|Query language files (SQL)
+`Config`|/app/config|Config files for application
 
 ## Services
 The services are default functionalities for usage. There are different kinds of services that can be used for specified thing. Check the table below for more details:
@@ -51,6 +52,7 @@ Service|Definition
 `UploadService`|File upload and directory manipulation utilities
 `UrlService`|Redirect and URL manipulation service
 `PdfService`|Service for PDF creation with Dompdf plugin
+`CurlService`|Service to make requests using CURL lib
 
 ## Imports
 Any application imports are made using the `ImportService`, except by specified imports. This service is about to make imports files such CSS files, JS files, PHP files, etc. This service reads the application folders to import the files. You can use `Ignore_` key as file prefix to prevent to load this file by the service. Below are some important functions that will import common files to the application:  
@@ -61,10 +63,10 @@ importCssModules()|Function to import CSS files using the tag: ```<link href="" 
 importJsModules()|Function to import JS files using the tag: ```<script src=""></script>```
 importPhpModules()|Function to import PHP files using the method: ```require_once() ```
 
-> The function ```ImportService::importPhpModules() ``` imports any PHP file from the folders <b>/app/components</b>, <b>/app/enums</b>, <b>/app/repositories</b> e <b>/app/services</b>. The file <b>/config.php</b> is imported too. Files that have the prefix <b>ignore_</b> willbe ignored for importation.
+> The function ```ImportService::importPhpModules() ``` imports any PHP file from the folders <b>/app/components</b>, <b>/app/enums</b>, <b>/app/repositories</b>, <b>/app/services</b> and <b>/app/config</b>. The file <b>/config.php</b> is imported too. Files that have the prefix <b>ignore_</b> will be ignored for importation.
 
 ## Components
-There is an interface for component creation. This interface has 3 default methods. Each method is defined for a specified thing:
+There is an interface for component creation called as ```Component```. This interface has 3 default methods. Each method is defined for a specified thing:
 
 Method|Definition
 ---|---
@@ -80,11 +82,37 @@ $component = new WelcomeComponent("VrbStarterKit");
 $component->render();
 ```
 
+## Static Components
+As the normal components, static is most basic that can be created with a static function only. It doesn't need to be instantiated as an object, and the parameters can be set in the function parameters. 
+There is a empty class ```StaticComponent``` just for definition purpose that can be used to create a static component. Check the example bellow to see the difference of a normal component:
+
+```php
+FooterStaticComponent::create();
+```
+
 ## Repositories
 The Repository classes are for database entity manipulation. Classes of Repository type usually have CRUD functions.
 
 ## Crons
 Cron classes have just an execution method to be called by cron jobs from server or other source. 
+
+## VrbSimpleForms
+The new update for VrbStarterKit provided a new feature called <b>VrbSimpleForms</b>. This feature was created to give another way to create
+simple forms. This new version brought the files below for a specific purpose:
+
+File|Definition
+---|---
+config/DynamicFormConfig.php|Configure the auto generated forms pages
+config/DynamicListConfig.php|Configure the auto generated list pages
+pages/DynamicFormPage.php|Page that will generate the form by identifier
+pages/DynamicListPage.php|Page that will generate the list by identifier
+actions/DynamicFormAction.php|Action that will process the data of the form and the list (INSERT, UPDATE and DELETE)
+
+To configure a new form, you need to create a new static function in <b>DynamicFormConfig.php</b> that will return the configuration to create
+this form, and set this function in the main configuration method of this class, linked to some identifier (Use the example in the class to create your own form).
+For each form, you need to create a list too with the same identifier, in the <b>DynamicListConfig.php</b>. To check the list and the form rendered, just
+redirect to the <b>DynamicListPage.php?id=IDENTIFIER</b> where the IDENTIFIER is the key set in the configuration. Click in the <b>INSERT</b> button to check the
+form rendered too.
 
 ## Pages
 The application pages follows a design pattern. Check below for an example: 
@@ -100,7 +128,7 @@ EventService::page();
 <html>
     <head>
         <?php
-        HtmlService::title("Title");
+        HtmlService::title("Basic Template");
         HtmlService::metatags();
         HtmlService::favicon();
         ImportService::importCssModules();
@@ -108,9 +136,14 @@ EventService::page();
         ?>
     </head>
     <body>
-        <?php 
-            echo("Hello World");
-        ?>
+        <!-- Header -->
+        <header></header>
+        
+        <!-- Main -->
+        <main></main>
+        
+        <!-- Footer -->
+        <footer></footer>
     </body>
     <script>
         $(document).ready(function () {
@@ -119,6 +152,9 @@ EventService::page();
     </script>
 </html>
 ```
+
+## Background image
+The background image has been made at https://lonewolfonline.net/geometric-background-generator/. Check the site for more details.
 
 ## About
 This project was developed in <b>Netbeans 8.1</b> IDE, using PHP language. The XAMPP envieronment was used for tests. The project is defined with <b>MIT</b> license (Open Source). Thanks and nice codding!

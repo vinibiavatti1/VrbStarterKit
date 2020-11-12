@@ -5,6 +5,14 @@ ImportService::importPhpModules();
 
 class DataTableComponent extends Component {
 
+    const DEFAULT_CONFIG = "{'bLengthChange': false, 'pageLength': 20, 'order': [[0, 'asc']]}";
+    const SELECTOR = ".datatable";
+    private $configJson;
+    
+    function __construct($configJson = self::DEFAULT_CONFIG) {
+        $this->configJson = $configJson;
+    }
+    
     public function html() {
         
     }
@@ -12,35 +20,9 @@ class DataTableComponent extends Component {
     public function script() {
         ?>
         <script>
-            $("table").dataTable({
-                "bLengthChange": false,
-                "pageLength": 20,
-                "language": {
-                    "sEmptyTable": "Não foi encontrado nenhum registo",
-                    "sLoadingRecords": "A carregar...",
-                    "sProcessing": "A processar...",
-                    "sLengthMenu": "Mostrar _MENU_ registos",
-                    "sZeroRecords": "Não foram encontrados resultados",
-                    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registos",
-                    "sInfoEmpty": "Mostrando de 0 até 0 de 0 registos",
-                    "sInfoFiltered": "(filtrado de _MAX_ registos no total)",
-                    "sInfoPostFix": "",
-                    "sSearch": "Procurar:",
-                    "sUrl": "",
-                    "oPaginate": {
-                        "sFirst": "Primeiro",
-                        "sPrevious": "Anterior",
-                        "sNext": "Seguinte",
-                        "sLast": "Último"
-                    },
-                    "oAria": {
-                        "sSortAscending": ": Ordenar colunas de forma ascendente",
-                        "sSortDescending": ": Ordenar colunas de forma descendente"
-                    }
-                }
-            });
+            $("<?= self::SELECTOR ?>").dataTable(<?= $this->configJson ?>);
             $("select").formSelect();
-            $("input[type=search]").attr("placeholder", "Buscar");
+            $("input[type=search]").attr("placeholder", "Search");
         </script>    
         <?php
 
@@ -48,6 +30,11 @@ class DataTableComponent extends Component {
 
     public function style() {
         
+    }
+    
+    public static function create($config = self::DEFAULT_CONFIG) {
+        $component = new DataTableComponent($config);
+        $component->script();
     }
 
 }

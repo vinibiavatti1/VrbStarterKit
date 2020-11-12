@@ -5046,7 +5046,7 @@ EOT;
         $this->transform(array($w / $dimensions["width"], 0, 0, $h / $dimensions["height"], $x, $y));
 
         $surface = new \Svg\Surface\SurfaceCpdf($doc, $this);
-        $doc->render($surface);
+        $doc->create($surface);
 
         $this->restore();
     }

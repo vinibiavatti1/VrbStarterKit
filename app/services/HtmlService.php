@@ -38,4 +38,14 @@ class HtmlService {
         ?><link rel="icon" href="<?= UrlService::addBaseUrl(Config::RESOURCE_FOLDER . "/" . Config::FAVICON) ?>" /><?php
     }
     
+    /**
+     * Print some PHP object/array inside "pre" tag
+     * @param type $object
+     */
+    public static function printPreformatted($object) {
+        echo("<pre>");
+        print_r($object);
+        echo("</pre>");
+    }
+    
 }

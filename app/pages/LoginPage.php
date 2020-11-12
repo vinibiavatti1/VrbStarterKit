@@ -22,16 +22,17 @@ EventService::page();
         <div>
             <div class="row">
                 <div class="col s12 m8 l6 offset-l3 offset-m2">
+                    <br>
                     <form action="<?= UrlService::addBaseUrl("/app/actions/LoginAction.php") ?>" method="POST">
-                        <div class="login-panel shadow-sm card">
+                        <h5 class="light white-text">Login</h5>
+                        <div class="card">
                             <div class="card-content">
-                                <h5 class="light" style="margin-top: 0px">Login</h5>
-                                <hr>
                                 E-mail
-                                <input type="email" class="form-control" id="email" placeholder="Insira seu e-mail" name="email" required="">
+                                <input type="email" class="form-control" id="email" placeholder="Put your e-mail" name="email" required="" value="admin@admin.com">
                                 Senha
-                                <input type="password" class="form-control" id="password" placeholder="Insira sua senha" name="password" required="">
-                                <button type="submit" class="btn btn-primary" style="width: 100%">Login</button>
+                                <input type="password" class="form-control" id="password" placeholder="Put your password" name="password" required="" value="admin">
+                                <button type="submit" class="btn black">Login</button>
+                                <a href="<?= UrlService::linkToPage("HomePage") ?>" class="btn red">Back</a>
                             </div>
                         </div>
                     </form>
@@ -41,7 +42,7 @@ EventService::page();
     </body>
     <script>
         $(document).ready(function () {
-
+            $(".select2").select2();
         });
     </script>
 </html>

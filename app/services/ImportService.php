@@ -35,7 +35,6 @@ class ImportService {
         <script src="<?=UrlService::addBaseUrl("/app/scripts/GeneralJs.js")?>" type="text/javascript"></script>
         <script src="<?=UrlService::addBaseUrl("/plugins/jquery-3.3.1/jquery.js")?>" type="text/javascript"></script>
         <script src="<?=UrlService::addBaseUrl("/plugins/datatable-1.10.18/js/jquery.dataTables.min.js")?>" type="text/javascript"></script>
-        <script src="<?=UrlService::addBaseUrl("/plugins/bootstrap-4.3.1/js/popper.min.js")?>" type="text/javascript"></script>
         <script src="<?=UrlService::addBaseUrl("/plugins/materialize-1.0.0/js/materialize.min.js")?>" type="text/javascript"></script>
         <script src="<?=UrlService::addBaseUrl("/plugins/select2-4.0.6/js/select2.full.min.js")?>" type="text/javascript"></script>
         <script src="<?=UrlService::addBaseUrl("/plugins/fancybox-3.5.7/jquery.fancybox.min.js")?>" type="text/javascript"></script>
@@ -65,6 +64,7 @@ class ImportService {
         ImportService::importPhpModulesFromDir(__DIR__ . "/../enums");
         ImportService::importPhpModulesFromDir(__DIR__ . "/../repositories");
         ImportService::importPhpModulesFromDir(__DIR__ . "/../services");
+        ImportService::importPhpModulesFromDir(__DIR__ . "/../config");
         require_once(__DIR__ . "/../../config.php");
     }
     

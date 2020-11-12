@@ -8,7 +8,7 @@ EventService::page();
 <html>
     <head>
         <?php
-        HtmlService::title("Connection error");
+        HtmlService::title("Basic Template");
         HtmlService::metatags();
         HtmlService::favicon();
         ImportService::importCssModules();
@@ -16,9 +16,18 @@ EventService::page();
         ?>
     </head>
     <body>
-        <div class="white-text">
-            The application cannot connect to the database. Please, try again later.<br>
-            <a href="<?= UrlService::addBaseUrl("app/pages/LoginPage.php") ?>">Try again</a>
-        </div>
+        <!-- Header -->
+        <header></header>
+        
+        <!-- Main -->
+        <main></main>
+        
+        <!-- Footer -->
+        <footer></footer>
     </body>
+    <script>
+        $(document).ready(function () {
+
+        });
+    </script>
 </html>
