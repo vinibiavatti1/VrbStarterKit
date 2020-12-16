@@ -1,10 +1,10 @@
 <?php
-require_once(__DIR__ . "/../services/ImportService.php");
-ImportService::importPhpModules();
+require_once(__DIR__ . "/../utils/ImportUtil.php");
+ImportUtil::importPhpModules();
 
 // Action event call
-EventService::action();
+EventUtil::action();
 
 // Detroy session
-SessionService::destroy();
-UrlService::redirectToPage("HomePage");
+SessionUtil::destroy();
+UrlUtil::redirectToPage("HomePage");

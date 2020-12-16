@@ -1,51 +1,30 @@
 <?php
-require_once(__DIR__ . "/../services/ImportService.php");
-ImportService::importPhpModules();
-
-// Security
-SecurityService::validateLogin(false);
+require_once(__DIR__ . "/../utils/ImportUtil.php");
+ImportUtil::importPhpModules();
 
 // Page event
-EventService::page();
+EventUtil::page();
 ?>
 <html>
     <head>
         <?php
-        HtmlService::title("Template");
-        HtmlService::metatags();
-        HtmlService::favicon();
-        ImportService::importCssModules();
-        ImportService::importJsModules();
+        HtmlUtil::title("Basic Template");
+        HtmlUtil::metatags();
+        HtmlUtil::favicon();
+        ImportUtil::importCssModules();
+        ImportUtil::importJsModules();
         ?>
     </head>
     <body>
         <!-- Header -->
-        <header>
-            <?php NavbarComponent::create(); ?>
-        </header>
+        <header></header>
         
         <!-- Main -->
-        <main>
-            <div class="container">
-                <h5 class="light white-text">Template</h5>
-                <div class="card">
-                    <div class="card-content">
-                        Hello World!
-                    </div>
-                </div>
-            </div>
-        </main>
+        <main></main>
         
         <!-- Footer -->
-        <footer>
-            <?php FooterStaticComponent::create() ?>
-        </footer>
+        <footer></footer>
     </body>
-    <?php 
-    DataTableComponent::create();
-    Select2StaticComponent::create();
-    StatusComponent::create();
-    ?>
     <script>
         $(document).ready(function () {
 

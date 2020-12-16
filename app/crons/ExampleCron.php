@@ -1,9 +1,9 @@
 <?php
-require_once(__DIR__ . "/../services/ImportService.php");
-ImportService::importPhpModules();
+require_once(__DIR__ . "/../utils/ImportUtil.php");
+ImportUtil::importPhpModules();
 
 // Cron event call
-EventService::cron();
+EventUtil::cron();
 
 /**
  * Example cron job

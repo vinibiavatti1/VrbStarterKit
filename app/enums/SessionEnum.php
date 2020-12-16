@@ -1,10 +1,10 @@
 <?php
 class SessionEnum {
-    const USER_ID_KEY = "USER_ID";
-    const PERMISSION_KEY = "PERMISSION";
-    const LICENSE_KEY = "LICENSE";
-    const TOKEN_KEY = "TOKEN";
-    const IDIOM_KEY = "IDIOM";
+    const USER_ID = "USER_ID";
+    const PERMISSION = "PERMISSION";
+    const LICENSE = "LICENSE";
+    const TOKEN = "TOKEN";
+    const IDIOM = "IDIOM";
     /* ... */
 }
 

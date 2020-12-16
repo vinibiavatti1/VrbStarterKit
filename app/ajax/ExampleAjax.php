@@ -1,21 +1,21 @@
 <?php
-require_once(__DIR__ . "/../services/ImportService.php");
-ImportService::importPhpModules();
+require_once(__DIR__ . "/../utils/ImportUtil.php");
+ImportUtil::importPhpModules();
 
 // Ajax event call
-EventService::ajax();
+EventUtil::ajax();
 
 // Validate params and access rights
-SecurityService::validateInputParams(INPUT_GET, ["value"]);
-SecurityService::validateSessionValue(SessionEnum::PERMISSION_KEY, PermissionEnum::ADMINISTRATOR);
-SecurityService::validateSessionValue(SessionEnum::LICENSE_KEY, LicenseEnum::ENTERPRISE);
+SecurityUtil::validateInputParams(INPUT_GET, ["value"]);
+SecurityUtil::validateSessionValue(SessionEnum::PERMISSION, PermissionEnum::ADMINISTRATOR);
+SecurityUtil::validateSessionValue(SessionEnum::LICENSE, LicenseEnum::ENTERPRISE);
 
 // Get HTTP params
-$valor_1 = HttpService::input(INPUT_POST, "value");
-$valor_2 = HttpService::input(INPUT_POST, "value2", -1);
+$valor_1 = HttpUtil::input(INPUT_POST, "value");
+$valor_2 = HttpUtil::input(INPUT_POST, "value2", -1);
 
 // Response
 $response = new JsonResponseErrorComponent(200, 'Success');
 $response->render();
-HeaderService::setJsonContentType();
+HeaderUtil::setJsonContentType();
 http_response_code(200);

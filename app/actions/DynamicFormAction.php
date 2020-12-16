@@ -1,23 +1,23 @@
 <?php
 /* VrbSimpleForms Feature */
 
-require_once(__DIR__ . "/../services/ImportService.php");
-ImportService::importPhpModules();
+require_once(__DIR__ . "/../utils/ImportUtil.php");
+ImportUtil::importPhpModules();
 
 //Debug
 const DEBUG = false;
 
 // Security
-SecurityService::validateLogin(false);
+SecurityUtil::validateLogin(false);
 
 // Action event call
-EventService::action();
+EventUtil::action();
 
 // Get HTTP params
-$id = HttpService::get("id");
-$recordId = HttpService::get("recordId");
-$action = HttpService::get("action");
-$table = HttpService::get("table");
+$id = HttpUtil::get("id");
+$recordId = HttpUtil::get("recordId");
+$action = HttpUtil::get("action");
+$table = HttpUtil::get("table");
 $data = $_POST;
 
 // Check is update
@@ -27,7 +27,7 @@ if ($action == ActionEnum::UPDATE) {
     $comma = "";
     foreach ($data as $key => $value) {
         $value = addslashes($value);
-        $sets .= "$comma $key = '$value'";
+        $sets .= "$comma `$key` = '$value'";
         $comma = ",";
     }
     $sql = sprintf($sql, $sets);
@@ -38,17 +38,17 @@ if ($action == ActionEnum::UPDATE) {
     $comma = "";
     foreach ($data as $key => $value) {
         $value = addslashes($value);
-        $fields .= "$comma $key";
+        $fields .= "$comma `$key`";
         $values .= "$comma '$value'";
         $comma = ",";
     }
     $sql = sprintf($sql, $fields, $values);
 } else if($action == ActionEnum::DELETE) {
-    $sql = "UPDATE $table SET active = 0 WHERE id = $recordId";
+    $sql = "UPDATE `$table` SET active = 0 WHERE id = $recordId";
 }
 if (DEBUG) {
     echo $sql;
 } else {
-    DatabaseService::executeUpdate($sql);
-    UrlService::redirectToPage("DynamicListPage.php?id=$id&status=SUCCESS");
+    DatabaseUtil::executeSql($sql);
+    UrlUtil::redirectToPage("simpleforms/DynamicListPage.php?id=$id&status=SUCCESS");
 }

@@ -1,18 +1,20 @@
 <?php
-require_once(__DIR__ . "/../services/ImportService.php");
-ImportService::importPhpModules();
+require_once(__DIR__ . "/../utils/ImportUtil.php");
+ImportUtil::importPhpModules();
 
 // Action event call
-EventService::action();
+EventUtil::action();
 
 // Get HTTP params
-$email = HttpService::post("email");
-$password = HttpService::post("password");
+$email = HttpUtil::post("email");
+$password = HttpUtil::post("password");
+$idiom = HttpUtil::post("idiom");
 
 // Do login (Example)
 if($email == 'admin@admin.com' && $password == 'admin') {
-    SessionService::set(SessionEnum::USER_ID_KEY, $email);
-    UrlService::redirectToPage("AdminPage", "LOGIN_SUCCESS");
+    SessionUtil::set(SessionEnum::USER_ID, $email);
+    SessionUtil::set(SessionEnum::IDIOM, $idiom);
+    UrlUtil::redirectToPage("backoffice/BOHomePage", "LOGIN_SUCCESS");
 } else {
-    UrlService::redirectToPage("LoginPage", "LOGIN_FAILED");
+    UrlUtil::redirectToPage("LoginPage", "LOGIN_FAILED");
 }

@@ -1,6 +1,6 @@
 <?php
-require_once(__DIR__ . "/../services/ImportService.php");
-ImportService::importPhpModules();
+require_once(__DIR__ . "/../utils/ImportUtil.php");
+ImportUtil::importPhpModules();
 
 /**
  * Basic chart component that uses Chartjs lib
@@ -16,7 +16,7 @@ class BasicChartComponent extends Component {
     private $height;
     private $id;
 
-    public function __construct($id, $chartType, $data, $width = "50%", $height = "400px") {
+    public function __construct($id, $chartType, $data, $width = "100%", $height = "400px") {
         $this->chartType = $chartType;
         $this->data = $data;
         $this->width = $width;

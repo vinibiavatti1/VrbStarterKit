@@ -1,18 +1,18 @@
 <?php
-require_once(__DIR__ . "/../services/ImportService.php");
-ImportService::importPhpModules();
+require_once(__DIR__ . "/../utils/ImportUtil.php");
+ImportUtil::importPhpModules();
 
 // Page event
-EventService::page();
+EventUtil::page();
 ?>
 <html>
     <head>
         <?php
-        HtmlService::title("Home");
-        HtmlService::metatags();
-        HtmlService::favicon();
-        ImportService::importCssModules();
-        ImportService::importJsModules();
+        HtmlUtil::title("Home");
+        HtmlUtil::metatags();
+        HtmlUtil::favicon();
+        ImportUtil::importCssModules();
+        ImportUtil::importJsModules();
         ?>
     </head>
     <body class="background-image">
@@ -23,7 +23,9 @@ EventService::page();
                     <span class="brand-logo light"><?= Config::TITLE ?></span>
                     <div class="right">
                         <ul>
-                            <li><a href="<?= UrlService::linkToPage("LoginPage") ?>">Login</a></li>
+                            <li><a href="<?= UrlUtil::linkToPage("HomePage") ?>">English</a></li>
+                            <li><a href="<?= UrlUtil::linkToPage("HomePage") ?>?idiom=pt_BR">Portuguese</a></li>
+                            <li><a href="<?= UrlUtil::linkToPage("LoginPage") ?>">Login</a></li>
                         </ul>
                     </div>
                 </div>
@@ -36,7 +38,7 @@ EventService::page();
                 <div style="margin-top: 200px">
                     <h3 class="light center white-text">VrbStarterKit</h3>
                     <hr>
-                    <h6 class="light center white-text">Starter kit for PHP projects</h6>
+                    <h6 class="light center white-text"><?=__("Starter kit for PHP projects")?></h6>
                 </div>
             </div>
         </main>

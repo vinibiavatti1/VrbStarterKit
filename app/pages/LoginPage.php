@@ -1,18 +1,18 @@
 <?php
-require_once(__DIR__ . "/../services/ImportService.php");
-ImportService::importPhpModules();
+require_once(__DIR__ . "/../utils/ImportUtil.php");
+ImportUtil::importPhpModules();
 
 // Page event
-EventService::page();
+EventUtil::page();
 ?>
 <html>
     <head>
         <?php
-        HtmlService::title("Login");
-        HtmlService::metatags();
-        HtmlService::favicon();
-        ImportService::importCssModules();
-        ImportService::importJsModules();
+        HtmlUtil::title("Login");
+        HtmlUtil::metatags();
+        HtmlUtil::favicon();
+        ImportUtil::importCssModules();
+        ImportUtil::importJsModules();
         ?>
     </head>
     <body>
@@ -23,16 +23,25 @@ EventService::page();
             <div class="row">
                 <div class="col s12 m8 l6 offset-l3 offset-m2">
                     <br>
-                    <form action="<?= UrlService::addBaseUrl("/app/actions/LoginAction.php") ?>" method="POST">
+                    <form action="<?= UrlUtil::addBaseUrl("/app/actions/LoginAction.php") ?>" method="POST">
                         <h5 class="light white-text">Login</h5>
                         <div class="card">
                             <div class="card-content">
                                 E-mail
                                 <input type="email" class="form-control" id="email" placeholder="Put your e-mail" name="email" required="" value="admin@admin.com">
-                                Senha
+                                Password
                                 <input type="password" class="form-control" id="password" placeholder="Put your password" name="password" required="" value="admin">
+                                Idiom
+                                <select name="idiom" class="browser-default" style="margin-bottom: 10px">
+                                    <?php 
+                                        $enum = new ReflectionClass(IdiomEnum);
+                                        foreach($enum->getConstants() as $key => $value) {
+                                            ?><option value="<?=$value["code"]?>"><?=$value["description"]?></option><?php
+                                        } 
+                                    ?>
+                                </select>
                                 <button type="submit" class="btn black">Login</button>
-                                <a href="<?= UrlService::linkToPage("HomePage") ?>" class="btn red">Back</a>
+                                <a href="<?= UrlUtil::linkToPage("HomePage") ?>" class="btn red">Back</a>
                             </div>
                         </div>
                     </form>

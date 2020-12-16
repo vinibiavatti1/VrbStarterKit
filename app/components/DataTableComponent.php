@@ -1,7 +1,7 @@
 <?php
 
-require_once(__DIR__ . "/../services/ImportService.php");
-ImportService::importPhpModules();
+require_once(__DIR__ . "/../utils/ImportUtil.php");
+ImportUtil::importPhpModules();
 
 class DataTableComponent extends Component {
 

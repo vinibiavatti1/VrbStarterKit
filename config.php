@@ -7,10 +7,11 @@
 class Config {
     
     // VrbStarterKit defs (Do not change it)
-    const KIT_VERSION = "2020.11.11.23.30";
+    const KIT_VERSION = "2.0-beta";
     const FEATURES = [
         "VrbStarterKit",
-        "VrbSimpleForms"
+        "VrbSimpleForms",
+        "[WIP] VrbGenerator"
     ];
 
     // General configurations
