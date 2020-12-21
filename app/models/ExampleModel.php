@@ -3,6 +3,7 @@
  * Example model template
  */
 class ExampleModel {
+    
     private $id;
     private $name;
     
@@ -26,4 +27,5 @@ class ExampleModel {
     function setName($name): void {
         $this->name = $name;
     }
+    
 }

@@ -12,4 +12,9 @@ class ExampleRepository {
         DatabaseUtil::executeSql($sql);
     }
     
+    public static function findAllActive() {
+      $sql = "SELECT `id`, `name`, `active`, `age`, `description`, `id_school`, `birth_date`, `insert_date_time` FROM `example` WHERE `active` = '1'";
+      return DatabaseUtil::executeSql($sql);
+   }
+    
 }

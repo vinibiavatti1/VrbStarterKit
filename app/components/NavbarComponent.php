@@ -32,6 +32,7 @@ class NavbarComponent extends Component {
             <li class="sidenav-title">Examples</li>
             <li><a href="<?= UrlUtil::linkToPage("backoffice/BOChartExamplePage") ?>">Chart (Chartjs)</a></li>
             <li><a href="<?= UrlUtil::linkToPage("backoffice/BOMapExamplePage") ?>">Map (Leaflet OSM)</a></li>
+            <li><a href="<?= UrlUtil::linkToPage("backoffice/BOGMapExamplePage") ?>">Map (Google Maps)</a></li>
             <li><a href="<?= UrlUtil::linkToPage("backoffice/BOPdfExamplePage") ?>">Pdf (Dompdf)</a></li>
             <li class="sidenav-title">VrbSimpleForms</li>
             <li><a href="<?= UrlUtil::linkToPage("simpleforms/DynamicListPage.php?id=example") ?>">Dynamic List Page</a></li>

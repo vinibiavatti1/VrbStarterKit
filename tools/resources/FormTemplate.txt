@@ -1,0 +1,74 @@
+<?php
+require_once(__DIR__ . "/../../utils/ImportUtil.php");
+ImportUtil::importPhpModules();
+
+/* Security */
+SecurityUtil::validateLogin(false);
+
+/* Page event */
+EventUtil::page();
+
+/* Http */ 
+$id = HttpUtil::get("id");
+$action = ActionEnum::INSERT;
+$data = [];
+if($id != null) {
+    $action = ActionEnum::UPDATE;
+    $dataRs = [REPOSITORY_NAME]::findById($id);
+    if(DatabaseUtil::getNumRows($dataRs) == 0) {
+        HtmlUtil::errorMessage("Record not found!", 400);
+    }
+    $data = DatabaseUtil::fetchData($dataRs);
+}
+
+?>
+<html>
+    <head>
+        <?php
+        HtmlUtil::title("[PAGE_TITLE]");
+        HtmlUtil::metatags();
+        HtmlUtil::favicon();
+        ImportUtil::importCssModules();
+        ImportUtil::importJsModules();
+        ?>
+    </head>
+    <body>
+        <!-- Header -->
+        <header>
+            <?php NavbarComponent::create(); ?>
+        </header>
+        
+        <!-- Main -->
+        <main>
+            <div class="container">
+                <form action="<?=UrlUtil::linkToAction("[ACTION_NAME]")?>?id=<?=$id?>&action=<?=$action?>" method="POST">
+                    <h5 class="light white-text">Actions</h5>
+                    <div class="card">
+                        <div class="card-content">
+                            <button type="submit" class="btn black">Submit</button>
+                            <button type="reset" class="btn black">Reset</button>
+                            <button type="button" class="btn red" onclick="<?=HtmlUtil::historyBack()?>">Back</button>
+                        </div>
+                    </div>
+
+                    <h5 class="light white-text"><?= $action == ActionEnum::INSERT ? "Insert" : "Update" ?> Data</h5>
+                    <div class="card">
+                        <div class="card-content">
+[CONTENT]
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </main>
+        
+        <!-- Footer -->
+        <footer>
+            <?php FooterStaticComponent::create() ?>
+        </footer>
+    </body>
+    <script>
+        $(document).ready(function () {
+
+        });
+    </script>
+</html>

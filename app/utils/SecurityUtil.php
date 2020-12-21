@@ -151,7 +151,7 @@ class SecurityUtil {
             }
         }
         if($validateDatabaseUser) {
-            if(!DatabaseUtil::checkUserActive($userId)) {
+            if(!UserRepository::checkUserActive($userId)) {
                 if($return) {
                     return false;
                 } else {

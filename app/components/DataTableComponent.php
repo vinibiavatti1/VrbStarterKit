@@ -5,7 +5,7 @@ ImportUtil::importPhpModules();
 
 class DataTableComponent extends Component {
 
-    const DEFAULT_CONFIG = "{'bLengthChange': false, 'pageLength': 20, 'order': [[0, 'asc']]}";
+    const DEFAULT_CONFIG = "{'bLengthChange': false, 'pageLength': 20, 'order': [[0, 'asc']], 'scrollX': true}";
     const SELECTOR = ".datatable";
     private $configJson;
     

@@ -4,7 +4,7 @@
 require_once(__DIR__ . "/../utils/ImportUtil.php");
 ImportUtil::importPhpModules();
 
-//Debug
+// Debug
 const DEBUG = false;
 
 // Security

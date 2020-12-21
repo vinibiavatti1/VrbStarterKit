@@ -1,6 +1,7 @@
 <?php
 class ActionEnum {
-    const INSERT = 1;
-    const UPDATE = 2;
-    const DELETE = 3;
+    const INSERT = "insert";
+    const UPDATE = "update";
+    const DELETE = "delete";
+    const INACTIVATE = "inactivate";
 }

@@ -5,6 +5,9 @@ ImportUtil::importPhpModules();
 // Action event call
 EventUtil::action();
 
+// Security
+SecurityUtil::validatePostParams(["email", "password", "idiom"]);
+
 // Get HTTP params
 $email = HttpUtil::post("email");
 $password = HttpUtil::post("password");

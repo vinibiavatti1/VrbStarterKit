@@ -187,17 +187,6 @@ class DatabaseUtil {
     }
     
     /**
-     * Check user active. 
-     * <b>Maybe this method needs to be modified to correspond of your
-     * database structure!</b>
-     * @param type $userId
-     */
-    public static function checkUserActive($userId) {
-        $rs = self::executeSql("SELECT id FROM `user` WHERE id = $userId AND active = 1");
-        return self::getNumRows($rs) > 0;
-    }
-    
-    /**
      * Describe table and return the table data as a Result Set
      * @param type $table
      */
@@ -211,19 +200,7 @@ class DatabaseUtil {
      * @param type $sql
      */
     private static function renderSqlError($message, $sql) {
-        ?>
-        <html>
-            <head>
-                <?php HtmlUtil::metatags() ?>
-            </head>
-            <body>
-                <b>Database Error!</b><br><br>
-                Message: <?=$message?><br>
-                SQL: <?=$sql?><br><br>
-                <a href="javascript:history.back()">Back</a>
-            </body>
-        </html>
-        <?php
-        die;
+        $message .= "<br>SQL: " . $sql;
+        HtmlUtil::errorMessage($message, $errorCode);
     }
 }

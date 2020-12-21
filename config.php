@@ -11,7 +11,7 @@ class Config {
     const FEATURES = [
         "VrbStarterKit",
         "VrbSimpleForms",
-        "[WIP] VrbGenerator"
+        "VrbGenerator"
     ];
 
     // General configurations
@@ -65,6 +65,9 @@ class Config {
     // Application tokens
     const TOKEN_1 = "token_1";
     const TOKEN_2 = "token_2";
+    
+    // Google Maps API Key
+    const GMAP_API_KEY = "";
 
     /**
      * Get configuration by name

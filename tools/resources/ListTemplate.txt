@@ -1,0 +1,83 @@
+<?php
+require_once(__DIR__ . "/../../utils/ImportUtil.php");
+ImportUtil::importPhpModules();
+
+// Security
+SecurityUtil::validateLogin(false);
+
+// Page event
+EventUtil::page();
+
+// Get data
+$data = [REPOSITORY_NAME]::findAllActive();
+?>
+<html>
+    <head>
+        <?php
+        HtmlUtil::title("[PAGE_TITLE]");
+        HtmlUtil::metatags();
+        HtmlUtil::favicon();
+        ImportUtil::importCssModules();
+        ImportUtil::importJsModules();
+        ?>
+    </head>
+    <body>
+        <!-- Header -->
+        <header>
+            <?php NavbarComponent::create(); ?>
+        </header>
+
+        <!-- Main -->
+        <main>
+            <div class="container">
+                <h5 class="light white-text">Actions</h5>
+                <div class="card">
+                    <div class="card-content">
+                        <a href="<?=UrlUtil::linkToPage("[FORM_PAGE]")?>" class="btn black">Insert</a>
+                    </div>
+                </div>
+                
+                <h5 class="light white-text">Data</h5>
+                <div class="card">
+                    <div class="card-content">
+                        <table class="datatable">
+                            <thead>
+                                <tr>
+[HEADER]
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php while($row = DatabaseUtil::fetchData($data)) { ?>
+                                    <tr>
+[BODY]
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+            </div>
+        </main>
+        
+        <!-- footer -->
+        <footer> 
+            <?php FooterStaticComponent::create() ?>
+        </footer>
+    </body>
+    <?php
+    DataTableComponent::create();
+    StatusComponent::create();
+    ?>
+    <script>
+        $(document).ready(function () {
+            
+        });
+
+        function inactivate(id) {
+            if(confirm("Do you really want to do this action?")) {
+                window.location.href = "<?=UrlUtil::linkToAction("[ACTION_NAME]")?>?action=<?=ActionEnum::INACTIVATE?>&id=" + id;
+            }
+        }
+    </script>
+</html>
