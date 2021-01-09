@@ -121,13 +121,6 @@ $showTablesRs = DatabaseUtil::executeSql($sql);
         <!-- Footer -->
         <footer></footer>
     </body>
-    <?php 
-    CodeMirrorStaticComponent::create("repositoryTextarea", "php", "dracula");
-    CodeMirrorStaticComponent::create("actionTextarea", "php", "dracula");
-    CodeMirrorStaticComponent::create("validatorTextarea", "php", "dracula");
-    CodeMirrorStaticComponent::create("listTextarea", "php", "dracula");
-    CodeMirrorStaticComponent::create("formTextarea", "php", "dracula");
-    ?>
     <script>
         $(document).ready(function () {
             
